@@ -1735,7 +1735,7 @@ var require_emotion_css_cjs = __commonJS({
   }
 });
 
-// src/atoms2/Chip.tsx
+// src/Atoms/Chip.tsx
 var import_css = __toModule(require_emotion_css_cjs());
 import {
   createElement
