@@ -1746,10 +1746,12 @@ function Chip({ text }) {
   const handleClick = () => {
     setIsSelected(!isSelected);
   };
-  return /* @__PURE__ */ createElement("button", {
+  return /* @__PURE__ */ createElement("div", {
     className: isSelected ? selectedStyle : unSelectedStyle,
     onClick: handleClick
-  }, text);
+  }, /* @__PURE__ */ createElement("p", {
+    className: isSelected ? selectedTextStyle : unSelectedTextStyle
+  }, text));
 }
 var unSelectedStyle = import_css.css`
   box-sizing: border-box;
@@ -1766,6 +1768,23 @@ var unSelectedStyle = import_css.css`
   gap: 10;
   border-radius: 8px;
   border: 1px solid var(--grey_30_light, #e9ebee);
+`;
+var unSelectedTextStyle = import_css.css`
+  flex-shrink: 0;
+  width: auto; /* 28px */
+  height: auto; /* 23px */
+  white-space: pre;
+  position: relative;
+  line-height: 1.2;
+`;
+var selectedTextStyle = import_css.css`
+  flex-shrink: 0;
+  width: auto; /* 28px */
+  height: auto; /* 23px */
+  white-space: pre;
+  position: relative;
+  color: var(--grey_5_light, #fefefe);
+  line-height: 1.2;
 `;
 var selectedStyle = import_css.css`
   box-sizing: border-box;
