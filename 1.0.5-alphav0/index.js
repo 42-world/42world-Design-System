@@ -1,10 +1,5 @@
-// src/index.tsx
-export * from "./atoms.js";
-import { Battery } from "./Battery.js";
-import { Button } from "./Button.js";
-import { MotionButton } from "./MotionButton.js";
+// src/atoms2/index.tsx
+import { Chip } from "./Chip.js";
 export {
-  Battery,
-  Button,
-  MotionButton
+  Chip
 };
