@@ -1741,6 +1741,7 @@ import {
   createElement
 } from "react";
 import { useState } from "react";
+import { tokens } from "../tokens.js";
 function Chip({ text }) {
   const [isSelected, setIsSelected] = useState(false);
   const handleClick = () => {
@@ -1760,7 +1761,7 @@ var unSelectedStyle = import_css.css`
   padding: 6px 18px 6px 18px;
   align-content: center;
   border-radius: 8px;
-  border: 1px solid var(--grey_30_light, #e9ebee);
+  border: 1px solid ${tokens.color.grey_20_dark};
   background-color: #fff;
 `;
 var unSelectedTextStyle = import_css.css`
