@@ -1735,56 +1735,46 @@ var require_emotion_css_cjs = __commonJS({
   }
 });
 
-// src/components/Chip.tsx
+// src/components/Button.tsx
 var import_css = __toModule(require_emotion_css_cjs());
 import {
   createElement
 } from "react";
-import { useState } from "react";
 import { tokens } from "../tokens.js";
-function Chip({ text }) {
-  const [isSelected, setIsSelected] = useState(false);
-  const handleClick = () => {
-    setIsSelected(!isSelected);
-  };
-  return /* @__PURE__ */ createElement("div", {
-    className: isSelected ? selectedStyle : unSelectedStyle,
-    onClick: handleClick
-  }, /* @__PURE__ */ createElement("p", {
-    className: isSelected ? selectedTextStyle : unSelectedTextStyle
-  }, text));
+function Chip({ text, link, size, type }) {
+  return /* @__PURE__ */ createElement("button", {
+    type: "button",
+    className: import_css.css`
+        padding: ${size === "normal" ? "8px 24px 8px 24px" : "4px 24px 4px 24px"};
+        border-radius: 8px;
+        background-color: ${type === "primary" ? tokens.color.main_green_10 : tokens.color.grey_10_light};
+        border: 1px solid ${tokens.color.grey_30_light};
+        color: ${type === "primary" ? tokens.color.grey_5_light : tokens.color.grey_50_light};
+        font-weight: 500;
+        font-size: 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        cursor: pointer;
+        white-space: nowrap;
+        vertical-align: baseline;
+        line-height: 1.875;
+
+        font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+          'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
+          'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+
+        @font-face {
+          font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+            'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
+            'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+          src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
+        }
+      `
+  }, text);
 }
-var unSelectedStyle = import_css.css`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 6px 18px 6px 18px;
-  align-content: center;
-  border-radius: 8px;
-  border: 1px solid ${tokens.color.grey_20_dark};
-  background-color: #fff;
-`;
-var unSelectedTextStyle = import_css.css`
-  font-size: 16px;
-  margin: 0;
-`;
-var selectedTextStyle = import_css.css`
-  color: var(--grey_5_light, #fefefe);
-  font-size: 16px;
-  margin: 0;
-`;
-var selectedStyle = import_css.css`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 6px 18px 6px 18px;
-  background-color: var(--main_green_10, #41c464);
-  overflow: hidden;
-  align-content: center;
-  gap: 10;
-  border-radius: 8px;
-`;
+var sizeNormal = import_css.css``;
+var sizeSmall = import_css.css``;
 export {
   Chip
 };

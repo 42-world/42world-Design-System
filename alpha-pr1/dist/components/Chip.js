@@ -1762,7 +1762,7 @@ var unSelectedStyle = import_css.css`
   align-content: center;
   border-radius: 8px;
   border: 1px solid ${tokens.color.grey_20_dark};
-  background-color: #fff;
+  background-color: #fff; ;
 `;
 var unSelectedTextStyle = import_css.css`
   font-size: 16px;

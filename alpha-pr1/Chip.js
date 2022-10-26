@@ -1735,13 +1735,12 @@ var require_emotion_css_cjs = __commonJS({
   }
 });
 
-// src/components/Chip.tsx
+// src/Atoms/Chip.tsx
 var import_css = __toModule(require_emotion_css_cjs());
 import {
   createElement
 } from "react";
 import { useState } from "react";
-import { tokens } from "../tokens.js";
 function Chip({ text }) {
   const [isSelected, setIsSelected] = useState(false);
   const handleClick = () => {
@@ -1761,7 +1760,7 @@ var unSelectedStyle = import_css.css`
   padding: 6px 18px 6px 18px;
   align-content: center;
   border-radius: 8px;
-  border: 1px solid ${tokens.color.grey_20_dark};
+  border: 1px solid var(--grey_30_light, #e9ebee);
   background-color: #fff;
 `;
 var unSelectedTextStyle = import_css.css`
