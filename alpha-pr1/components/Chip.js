@@ -1782,7 +1782,7 @@ var selectedStyle = import_css.css`
   background-color: var(--main_green_10, #41c464);
   overflow: hidden;
   align-content: center;
-  gap: 30;
+  gap: 10;
   border-radius: 8px;
 `;
 export {
