@@ -1783,7 +1783,7 @@ var selectedStyle = import_css.css`
   overflow: hidden;
   align-content: center;
   gap: 10;
-  border-radius: 8px;
+  border-radius: 8px; ;
 `;
 export {
   Chip
