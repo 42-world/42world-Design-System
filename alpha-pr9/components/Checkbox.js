@@ -1735,46 +1735,111 @@ var require_emotion_css_cjs = __commonJS({
   }
 });
 
-// src/components/Button.tsx
+// src/components/Checkbox.tsx
 var import_css = __toModule(require_emotion_css_cjs());
 import {
   createElement
 } from "react";
+import { useState } from "react";
 import { tokens } from "../tokens.js";
-function Button({ text, link, size, type }) {
-  return /* @__PURE__ */ createElement("button", {
-    type: "button",
-    className: import_css.css`
-        padding: ${size === "normal" ? "8px 24px 8px 24px" : "4px 24px 4px 24px"};
-        border-radius: 8px;
-        background-color: ${type === "primary" ? tokens.color.main_green_10 : tokens.color.grey_10_light};
-        border: 1px solid ${tokens.color.grey_30_light};
-        color: ${type === "primary" ? tokens.color.grey_5_light : tokens.color.grey_50_light};
-        font-weight: 500;
-        font-size: 16px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        cursor: pointer;
-        white-space: nowrap;
-        vertical-align: baseline;
-        line-height: 1.875;
+function Checkbox({ theme, direction, list }) {
+  const containerStyle = import_css.css`
+    display: flex;
+    flex-direction: ${direction};
+    gap: 22px;
+    justify-content: 'start';
+    align-items: 'start';
+    white-space: nowrap;
+  `;
+  const checkboxStyle = import_css.css`
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: ${theme === "light" ? tokens.color.grey_60_light : tokens.color.grey_60_dark};
+    font-size: 14px;
 
-        font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-          'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-          'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
+      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
 
-        @font-face {
-          font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-            'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-            'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-          src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
-        }
-      `
-  }, text);
+    @font-face {
+      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+        'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
+        'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+      src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
+    }
+
+    & input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    & .checkmark {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 26px;
+      width: 26px;
+      border: 2px solid ${theme === "light" ? tokens.color.grey_40_light : tokens.color.grey_40_dark};
+      border-radius: 4px;
+    }
+
+    & .checkmarkSvg {
+      width: 16px;
+      height: 16px;
+      opacity: 0;
+    }
+
+    & input:checked ~ .checkmark {
+      border: 2px solid ${theme === "light" ? tokens.color.grey_60_light : tokens.color.grey_60_dark};
+
+      & svg {
+        opacity: 1;
+      }
+    }
+  `;
+  return /* @__PURE__ */ createElement("div", {
+    className: containerStyle
+  }, list.map((item) => {
+    const [checked, setChecked] = useState(item.isChecked);
+    const handleCheck = () => {
+      setChecked(!checked);
+    };
+    return /* @__PURE__ */ createElement("label", {
+      className: checkboxStyle
+    }, /* @__PURE__ */ createElement("input", {
+      type: "checkbox",
+      className: "checked",
+      checked
+    }), /* @__PURE__ */ createElement("span", {
+      className: "checkmark",
+      onClick: handleCheck
+    }, /* @__PURE__ */ createElement("svg", {
+      className: "checkmarkSvg",
+      viewBox: "0 0 20 20",
+      fill: "currentColor",
+      width: "24",
+      height: "24",
+      color: theme === "light" ? tokens.color.grey_60_light : tokens.color.grey_60_dark
+    }, /* @__PURE__ */ createElement("path", {
+      "fill-rule": "evenodd",
+      d: "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z",
+      "clip-rule": "evenodd"
+    }))), /* @__PURE__ */ createElement("p", {
+      onClick: handleCheck
+    }, item.text));
+  }));
 }
-var sizeNormal = import_css.css``;
-var sizeSmall = import_css.css``;
 export {
-  Button
+  Checkbox
 };
