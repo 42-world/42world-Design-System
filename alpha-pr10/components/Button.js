@@ -1741,7 +1741,7 @@ import {
   createElement
 } from "react";
 import { tokens } from "../tokens.js";
-function Button({ text, link, size, type }) {
+function Chip({ text, link, size, type }) {
   return /* @__PURE__ */ createElement("button", {
     type: "button",
     className: import_css.css`
@@ -1776,5 +1776,5 @@ function Button({ text, link, size, type }) {
 var sizeNormal = import_css.css``;
 var sizeSmall = import_css.css``;
 export {
-  Button
+  Chip
 };
