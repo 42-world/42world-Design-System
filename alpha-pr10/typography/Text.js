@@ -1735,46 +1735,47 @@ var require_emotion_css_cjs = __commonJS({
   }
 });
 
-// src/components/Button.tsx
+// src/typography/Text.tsx
 var import_css = __toModule(require_emotion_css_cjs());
 import {
   createElement
 } from "react";
 import { tokens } from "../tokens.js";
-function Button({ text, link, size, type }) {
-  return /* @__PURE__ */ createElement("button", {
-    type: "button",
-    className: import_css.css`
-        padding: ${size === "normal" ? "8px 24px 8px 24px" : "4px 24px 4px 24px"};
-        border-radius: 8px;
-        background-color: ${type === "primary" ? tokens.color.main_green_10 : tokens.color.grey_10_light};
-        border: 1px solid ${tokens.color.grey_30_light};
-        color: ${type === "primary" ? tokens.color.grey_5_light : tokens.color.grey_50_light};
-        font-weight: 500;
-        font-size: 16px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        cursor: pointer;
-        white-space: nowrap;
-        vertical-align: baseline;
-        line-height: 1.875;
+function Text({ theme, size, color, align, text }) {
+  const textStyle = import_css.css`
+    display: flex;
+    justify-content: ${align};
 
+    & h1,
+    h2,
+    h3,
+    h4,
+    p {
+      /* white-space: nowrap; */
+      font-size: ${size === "Header1" ? "45px" : size === "Header2" ? "36px" : size === "Header3" ? "26px" : size === "Header4" ? "18px" : size === "Body1" ? "18px" : size === "Body2" ? "16px" : size === "Body3" ? "14px" : size === "Caption" ? "12px" : "16px"};
+      font-weight: 500;
+      width: 1fr;
+      line-height: 1.25;
+      margin: 0;
+      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+        'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
+        'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+
+      @font-face {
         font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
           'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
           'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-
-        @font-face {
-          font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-            'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-            'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-          src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
-        }
-      `
-  }, text);
+        src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
+      }
+    }
+  `;
+  const COLOR_LIGHT = color === "grey_40" ? tokens.color.grey_40_light : color === "grey_50" ? tokens.color.grey_50_light : color === "grey_60" ? tokens.color.grey_60_light : color === "grey_70" ? tokens.color.grey_70_light : color === "main_green_10" ? tokens.color.main_green_10 : color === "red_10" ? tokens.color.grey_50_light : tokens.color.grey_50_light;
+  const COLOR_DARK = color === "grey_40" ? tokens.color.grey_40_dark : color === "grey_50" ? tokens.color.grey_50_dark : color === "grey_60" ? tokens.color.grey_60_dark : color === "grey_70" ? tokens.color.grey_70_dark : color === "main_green_10" ? tokens.color.main_green_10 : color === "red_10" ? tokens.color.grey_50_dark : tokens.color.grey_50_light;
+  return /* @__PURE__ */ createElement("div", {
+    className: textStyle,
+    style: { color: theme === "light" ? COLOR_LIGHT : COLOR_DARK }
+  }, size === "Header1" ? /* @__PURE__ */ createElement("h1", null, text) : size === "Header2" ? /* @__PURE__ */ createElement("h2", null, text) : size === "Header3" ? /* @__PURE__ */ createElement("h3", null, text) : size === "Header4" ? /* @__PURE__ */ createElement("h4", null, text) : /* @__PURE__ */ createElement("p", null, text));
 }
-var sizeNormal = import_css.css``;
-var sizeSmall = import_css.css``;
 export {
-  Button
+  Text
 };
