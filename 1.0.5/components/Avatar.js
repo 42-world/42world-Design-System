@@ -1735,114 +1735,66 @@ var require_emotion_css_cjs = __commonJS({
   }
 });
 
-// src/components/Button.tsx
+// src/components/Avatar.tsx
 var import_css = __toModule(require_emotion_css_cjs());
 import {
   createElement
 } from "react";
 import { tokens } from "../tokens.js";
-function Button({ theme, text, link, size, type }) {
-  const defaultStyle = import_css.css`
-    padding: ${size === "normal" ? "8px 24px 8px 24px" : "4px 24px 4px 24px"};
-    border-radius: 8px;
-    background-color: ${theme === "light" ? tokens.color.grey_10_light : tokens.color.grey_10_dark};
-    border: 1px solid ${theme === "light" ? tokens.color.grey_30_light : tokens.color.grey_30_dark};
-    color: ${theme === "light" ? tokens.color.grey_50_light : tokens.color.grey_50_dark};
-    font-weight: 500;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    white-space: nowrap;
-    vertical-align: baseline;
-    line-height: 1.875;
+function Avatar({ theme, profileImg, username, createdAt }) {
+  const detailStyle = import_css.css`
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    white-space: nowrap; // framer에서 import 할 때 text 깨짐 방지
 
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-
-    @font-face {
+    & > * {
+      margin: 0;
       font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
         'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
         'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-      src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
+
+      @font-face {
+        font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+          'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
+          'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+        src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
+      }
     }
 
-    &:hover {
-      background-color: ${theme === "light" ? tokens.color.grey_20_light : tokens.color.grey_20_dark};
-    }
-  `;
-  const dangerStyle = import_css.css`
-    padding: ${size === "normal" ? "8px 24px 8px 24px" : "4px 24px 4px 24px"};
-    border-radius: 8px;
-    background-color: ${theme === "light" ? tokens.color.grey_10_light : tokens.color.grey_10_dark};
-    border: 1px solid ${theme === "light" ? tokens.color.grey_30_light : tokens.color.grey_30_dark};
-    color: ${theme === "light" ? tokens.color.grey_50_light : tokens.color.grey_50_dark};
-    font-weight: 500;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    white-space: nowrap;
-    vertical-align: baseline;
-    line-height: 1.875;
-
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-
-    @font-face {
-      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-        'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-        'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-      src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
+    & > p:first-of-type {
+      font-size: 16px;
+      color: ${theme === "light" ? tokens.color.grey_70_light : tokens.color.grey_70_dark};
+      font-weight: 500;
     }
 
-    &:hover {
-      background-color: ${theme === "light" ? tokens.color.red_5_light : tokens.color.red_5_dark};
-      color: ${tokens.color.red_10_light};
-      border: 1px solid ${tokens.color.red_10_light};
+    & > p:last-of-type {
+      font-size: 12px;
+      color: ${theme === "light" ? tokens.color.grey_40_light : tokens.color.grey_40_dark};
     }
   `;
-  const primaryStyle = import_css.css`
-    padding: ${size === "normal" ? "8px 24px 8px 24px" : "4px 24px 4px 24px"};
-    border-radius: 8px;
-    background-color: ${tokens.color.main_green_10};
-    border: 1px solid ${theme === "light" ? tokens.color.grey_30_light : tokens.color.grey_30_dark};
-    color: ${tokens.color.grey_5_light};
-    font-weight: 500;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    white-space: nowrap;
-    vertical-align: baseline;
-    line-height: 1.875;
-
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-
-    @font-face {
-      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-        'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-        'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-      src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
-    }
-
-    &:hover {
-      background-color: ${tokens.color.main_green_20};
-    }
-  `;
-  return /* @__PURE__ */ createElement("a", {
-    type: "button",
-    className: type === "default" ? defaultStyle : type === "danger" ? dangerStyle : type === "primary" ? primaryStyle : defaultStyle,
-    href: link
-  }, text);
+  return /* @__PURE__ */ createElement("div", {
+    className: ContainerStyle
+  }, /* @__PURE__ */ createElement("img", {
+    src: profileImg,
+    className: profileStyle
+  }), /* @__PURE__ */ createElement("div", {
+    className: detailStyle
+  }, /* @__PURE__ */ createElement("p", null, username), /* @__PURE__ */ createElement("p", null, createdAt)));
 }
+var ContainerStyle = import_css.css`
+  display: flex;
+  gap: 12px;
+  justify-content: flex-start;
+  align-items: center;
+`;
+var profileStyle = import_css.css`
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: ${tokens.color.grey_10_light};
+  object-fit: cover;
+`;
 export {
-  Button
+  Avatar
 };
