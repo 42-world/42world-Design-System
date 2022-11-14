@@ -1769,8 +1769,8 @@ function Text({ theme, size, color, align, text }) {
       }
     }
   `;
-  const COLOR_LIGHT = color === "grey_40" ? tokens.color.grey_40_light : color === "grey_50" ? tokens.color.grey_50_light : color === "grey_60" ? tokens.color.grey_60_light : color === "grey_70" ? tokens.color.grey_70_light : color === "main_green_10" ? tokens.color.main_green_10 : color === "red_10" ? tokens.color.red_10_light : tokens.color.grey_50_light;
-  const COLOR_DARK = color === "grey_40" ? tokens.color.grey_40_dark : color === "grey_50" ? tokens.color.grey_50_dark : color === "grey_60" ? tokens.color.grey_60_dark : color === "grey_70" ? tokens.color.grey_70_dark : color === "main_green_10" ? tokens.color.main_green_10 : color === "red_10" ? tokens.color.red_10_light : tokens.color.grey_50_light;
+  const COLOR_LIGHT = color === "grey_40" ? tokens.color.grey_40_light : color === "grey_50" ? tokens.color.grey_50_light : color === "grey_60" ? tokens.color.grey_60_light : color === "grey_70" ? tokens.color.grey_70_light : color === "main_green_10" ? tokens.color.main_green_10 : color === "red_10" ? tokens.color.grey_50_light : tokens.color.grey_50_light;
+  const COLOR_DARK = color === "grey_40" ? tokens.color.grey_40_dark : color === "grey_50" ? tokens.color.grey_50_dark : color === "grey_60" ? tokens.color.grey_60_dark : color === "grey_70" ? tokens.color.grey_70_dark : color === "main_green_10" ? tokens.color.main_green_10 : color === "red_10" ? tokens.color.grey_50_dark : tokens.color.grey_50_light;
   return /* @__PURE__ */ createElement("div", {
     className: textStyle,
     style: { color: theme === "light" ? COLOR_LIGHT : COLOR_DARK }
