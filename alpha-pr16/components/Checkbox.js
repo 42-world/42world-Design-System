@@ -1741,7 +1741,7 @@ import {
   createElement
 } from "react";
 import { useState } from "react";
-import { tokens } from "../tokens.js";
+import { token } from "../common/token/index.js";
 function Checkbox({ theme, direction, list }) {
   const containerStyle = import_css.css`
     display: flex;
@@ -1762,7 +1762,7 @@ function Checkbox({ theme, direction, list }) {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    color: ${theme === "light" ? tokens.color.grey_60_light : tokens.color.grey_60_dark};
+    color: ${theme === "light" ? token.color.grey_60_light : token.color.grey_60_dark};
     font-size: 14px;
 
     font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
@@ -1790,7 +1790,7 @@ function Checkbox({ theme, direction, list }) {
       align-items: center;
       height: 26px;
       width: 26px;
-      border: 2px solid ${theme === "light" ? tokens.color.grey_40_light : tokens.color.grey_40_dark};
+      border: 2px solid ${theme === "light" ? token.color.grey_40_light : token.color.grey_40_dark};
       border-radius: 4px;
     }
 
@@ -1801,7 +1801,7 @@ function Checkbox({ theme, direction, list }) {
     }
 
     & input:checked ~ .checkmark {
-      border: 2px solid ${theme === "light" ? tokens.color.grey_60_light : tokens.color.grey_60_dark};
+      border: 2px solid ${theme === "light" ? token.color.grey_60_light : token.color.grey_60_dark};
 
       & svg {
         opacity: 1;
@@ -1830,7 +1830,7 @@ function Checkbox({ theme, direction, list }) {
       fill: "currentColor",
       width: "24",
       height: "24",
-      color: theme === "light" ? tokens.color.grey_60_light : tokens.color.grey_60_dark
+      color: theme === "light" ? token.color.grey_60_light : token.color.grey_60_dark
     }, /* @__PURE__ */ createElement("path", {
       "fill-rule": "evenodd",
       d: "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z",
