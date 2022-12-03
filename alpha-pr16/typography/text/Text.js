@@ -1735,47 +1735,45 @@ var require_emotion_css_cjs = __commonJS({
   }
 });
 
-// src/typography/Text.tsx
+// src/typography/text/Text.tsx
 var import_css = __toModule(require_emotion_css_cjs());
 import {
   createElement
 } from "react";
-import { tokens } from "../tokens.js";
+import { getFontSize, getFontWeight, getThemeColor } from "./utils.js";
 function Text({ theme, size, color, align, text }) {
-  const textStyle = import_css.css`
-    display: flex;
-    justify-content: ${align};
+  return /* @__PURE__ */ createElement("div", {
+    className: textStyle(align, size),
+    style: { color: getThemeColor(theme, color) }
+  }, size === "Header1" ? /* @__PURE__ */ createElement("h1", null, text) : size === "Header2" ? /* @__PURE__ */ createElement("h2", null, text) : size === "Header3" ? /* @__PURE__ */ createElement("h3", null, text) : size === "Header4" ? /* @__PURE__ */ createElement("h4", null, text) : /* @__PURE__ */ createElement("p", null, text));
+}
+var textStyle = (align, size) => import_css.css`
+  display: flex;
+  justify-content: ${align};
 
-    & h1,
-    h2,
-    h3,
-    h4,
-    p {
-      /* white-space: nowrap; */
-      font-size: ${size === "Header1" ? "45px" : size === "Header2" ? "36px" : size === "Header3" ? "26px" : size === "Header4" ? "18px" : size === "Body1" ? "18px" : size === "Body2" ? "16px" : size === "Body3" ? "14px" : size === "Caption" ? "12px" : "16px"};
-      font-weight: ${size === "Header1" ? 600 : size === "Header2" ? 600 : size === "Header3" ? 600 : size === "Header4" ? 600 : size === "Body1" ? 500 : 500};
-      width: 1fr;
-      line-height: 1.25;
-      margin: 0;
+  & h1,
+  h2,
+  h3,
+  h4,
+  p {
+    /* white-space: nowrap; */
+    font-size: ${getFontSize(size)};
+    font-weight: ${getFontWeight(size)}};
+    width: 1fr;
+    line-height: 1.25;
+    margin: 0;
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
+      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+
+    @font-face {
       font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
         'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
         'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-
-      @font-face {
-        font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-          'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-          'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-        src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
-      }
+      src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
     }
-  `;
-  const COLOR_LIGHT = color === "grey_40" ? tokens.color.grey_40_light : color === "grey_50" ? tokens.color.grey_50_light : color === "grey_60" ? tokens.color.grey_60_light : color === "grey_70" ? tokens.color.grey_70_light : color === "main_green_10" ? tokens.color.main_green_10 : color === "red_10" ? tokens.color.grey_50_light : tokens.color.grey_50_light;
-  const COLOR_DARK = color === "grey_40" ? tokens.color.grey_40_dark : color === "grey_50" ? tokens.color.grey_50_dark : color === "grey_60" ? tokens.color.grey_60_dark : color === "grey_70" ? tokens.color.grey_70_dark : color === "main_green_10" ? tokens.color.main_green_10 : color === "red_10" ? tokens.color.grey_50_dark : tokens.color.grey_50_light;
-  return /* @__PURE__ */ createElement("div", {
-    className: textStyle,
-    style: { color: theme === "light" ? COLOR_LIGHT : COLOR_DARK }
-  }, size === "Header1" ? /* @__PURE__ */ createElement("h1", null, text) : size === "Header2" ? /* @__PURE__ */ createElement("h2", null, text) : size === "Header3" ? /* @__PURE__ */ createElement("h3", null, text) : size === "Header4" ? /* @__PURE__ */ createElement("h4", null, text) : /* @__PURE__ */ createElement("p", null, text));
-}
+  }
+`;
 export {
   Text
 };
