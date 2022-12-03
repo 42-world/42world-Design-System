@@ -1740,7 +1740,7 @@ var import_css = __toModule(require_emotion_css_cjs());
 import {
   createElement
 } from "react";
-import { token } from "../common/token/index.js";
+import { tokens } from "../tokens.js";
 function Avatar({ theme, profileImg, username, createdAt }) {
   const detailStyle = import_css.css`
     display: flex;
@@ -1764,13 +1764,13 @@ function Avatar({ theme, profileImg, username, createdAt }) {
 
     & > p:first-of-type {
       font-size: 16px;
-      color: ${theme === "light" ? token.color.grey_70_light : token.color.grey_70_dark};
+      color: ${theme === "light" ? tokens.color.grey_70_light : tokens.color.grey_70_dark};
       font-weight: 500;
     }
 
     & > p:last-of-type {
       font-size: 12px;
-      color: ${theme === "light" ? token.color.grey_40_light : token.color.grey_40_dark};
+      color: ${theme === "light" ? tokens.color.grey_40_light : tokens.color.grey_40_dark};
     }
   `;
   return /* @__PURE__ */ createElement("div", {
@@ -1792,7 +1792,7 @@ var profileStyle = import_css.css`
   width: 40px;
   height: 40px;
   border-radius: 20px;
-  background-color: ${token.color.grey_10_light};
+  background-color: ${tokens.color.grey_10_light};
   object-fit: cover;
 `;
 export {
