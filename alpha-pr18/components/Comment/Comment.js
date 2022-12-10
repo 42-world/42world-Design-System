@@ -1735,115 +1735,45 @@ var require_emotion_css_cjs = __commonJS({
   }
 });
 
-// src/components/Feed.tsx
+// src/components/Comment/Comment.tsx
 var import_css = __toModule(require_emotion_css_cjs());
-import {
-  createElement
-} from "react";
-import { tokens } from "../tokens.js";
-import { Text } from "../typography/Text.js";
-import { Avatar } from "./Avatar.js";
-function Feed({ theme, title, contents, isThumbed, thumbCount, commentCount, user }) {
-  const thumbedStyle = tokens.color.main_green_10;
-  const unThumbedStyle = theme === "light" ? tokens.color.grey_50_light : tokens.color.grey_50_dark;
-  return /* @__PURE__ */ createElement("div", null, /* @__PURE__ */ createElement("div", {
-    className: contentsStyle
-  }, /* @__PURE__ */ createElement(Avatar, {
+import { Text } from "../../typography/Text.js";
+import { Avatar } from "../Avatar.js";
+function Comment({ theme, text, isThumbed, thumbCount, user }) {
+  return /* @__PURE__ */ React.createElement("div", {
+    className: containerStyle
+  }, /* @__PURE__ */ React.createElement(Avatar, {
     createdAt: user.createdAt,
-    username: user.username,
     profileImg: user.profileImg,
-    theme
-  }), /* @__PURE__ */ createElement(Text, {
-    align: "left",
-    color: "grey_60",
-    size: "Header4",
-    text: title,
-    theme
-  }), /* @__PURE__ */ createElement("p", {
-    className: feedTextStyle(theme)
-  }, contents)), /* @__PURE__ */ createElement("div", {
-    className: bottomStyle(theme)
-  }, /* @__PURE__ */ createElement("div", {
-    className: iconContainerStyle
-  }, /* @__PURE__ */ createElement("div", {
-    className: iconStyle
-  }, /* @__PURE__ */ createElement("svg", {
-    fill: "none",
-    viewBox: "0 0 24 24",
-    stroke: "currentColor",
-    width: "18",
-    height: "18",
-    color: isThumbed ? thumbedStyle : unThumbedStyle
-  }, /* @__PURE__ */ createElement("path", {
-    "stroke-linecap": "round",
-    "stroke-linejoin": "round",
-    "stroke-width": "2",
-    d: "M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905a3.61 3.61 0 01-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"
-  }))), /* @__PURE__ */ createElement(Text, {
-    align: "left",
-    color: isThumbed ? "main_green_10" : "grey_50",
-    size: "Body3",
-    text: thumbCount.toString(),
-    theme
-  })), /* @__PURE__ */ createElement("div", {
-    className: iconContainerStyle
-  }, /* @__PURE__ */ createElement("div", {
-    className: iconStyle
-  }, /* @__PURE__ */ createElement("svg", {
-    fill: "none",
-    viewBox: "0 0 24 24",
-    stroke: "currentColor",
-    width: "18",
-    height: "18",
-    color: theme === "light" ? tokens.color.grey_50_light : tokens.color.grey_50_dark
-  }, /* @__PURE__ */ createElement("path", {
-    "stroke-linecap": "round",
-    "stroke-linejoin": "round",
-    "stroke-width": "2",
-    d: "M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-  }))), /* @__PURE__ */ createElement(Text, {
+    theme,
+    username: user.username
+  }), /* @__PURE__ */ React.createElement("div", {
+    className: textWrapperStyle
+  }, /* @__PURE__ */ React.createElement(Text, {
+    size: "body3",
     align: "left",
     color: "grey_50",
-    size: "Body3",
-    text: commentCount.toString(),
+    text,
     theme
-  }))));
+  }), /* @__PURE__ */ React.createElement(Text, {
+    size: "caption",
+    align: "left",
+    color: isThumbed ? "main_green_10" : "grey_50",
+    text: `\uC88B\uC544\uC694 ${thumbCount}`,
+    theme
+  })));
 }
-var contentsStyle = import_css.css`
+var containerStyle = import_css.css`
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding-bottom: 22px;
+  gap: 12px;
 `;
-var feedTextStyle = (theme) => import_css.css`
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-wrap: break-word;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  font-size: 15px;
-  font-weight: 400;
-  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto;
-  color: ${theme === "light" ? tokens.color.grey_50_light : tokens.color.grey_50_dark};
-  line-height: 1.25;
-`;
-var bottomStyle = (theme) => import_css.css`
+var textWrapperStyle = import_css.css`
   display: flex;
-  padding: 8px 0px 16px 0px;
-  gap: 16px;
-  border-bottom: 1px solid ${theme === "light" ? tokens.color.grey_30_light : tokens.color.grey_30_dark};
-`;
-var iconContainerStyle = import_css.css`
-  display: flex;
-  gap: 6px;
-`;
-var iconStyle = import_css.css`
-  width: 18px;
-  height: 18px;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 52px;
 `;
 export {
-  Feed
+  Comment
 };

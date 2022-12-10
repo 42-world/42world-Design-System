@@ -1735,63 +1735,83 @@ var require_emotion_css_cjs = __commonJS({
   }
 });
 
-// src/components/Avatar.tsx
+// src/components/Button/Button.tsx
 var import_css = __toModule(require_emotion_css_cjs());
-import { token } from "../common/token/index.js";
-function Avatar({ theme, profileImg, username, createdAt }) {
-  return /* @__PURE__ */ React.createElement("div", {
-    className: ContainerStyle
-  }, /* @__PURE__ */ React.createElement("img", {
-    src: profileImg,
-    className: profileStyle
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: detailStyle(theme)
-  }, /* @__PURE__ */ React.createElement("p", null, username), /* @__PURE__ */ React.createElement("p", null, createdAt)));
+import { token } from "../../common/token/index.js";
+import { wrapATag } from "./wrapATag.js";
+function Button(props) {
+  const isLinkType = props.childType === "link";
+  const onClick = isLinkType ? () => void 0 : props.onClick;
+  const innerButton = /* @__PURE__ */ React.createElement("button", {
+    className: getClassStyle(props),
+    onClick
+  }, /* @__PURE__ */ React.createElement("span", null, props.text));
+  return isLinkType ? wrapATag(props.link, innerButton) : innerButton;
 }
-var detailStyle = (theme) => import_css.css`
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-  white-space: nowrap; // framer에서 import 할 때 text 깨짐 방지
-
-  & > * {
-    margin: 0;
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-
-    @font-face {
-      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-        'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-        'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-      src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
-    }
-  }
-
-  & > p:first-of-type {
-    font-size: 16px;
-    color: ${theme === "light" ? token.color.grey_70_light : token.color.grey_70_dark};
-    font-weight: 500;
-  }
-
-  & > p:last-of-type {
-    font-size: 12px;
-    color: ${theme === "light" ? token.color.grey_40_light : token.color.grey_40_dark};
+var getClassStyle = ({ style, theme, size }) => ({
+  default: defaultStyle({ theme, size }),
+  danger: dangerStyle({ theme, size }),
+  primary: primaryStyle({ theme, size })
+})[style];
+var defaultStyle = ({ theme, size }) => import_css.css`
+  padding: ${size === "normal" ? "8px 24px 8px 24px" : "4px 24px 4px 24px"};
+  border-radius: 8px;
+  background-color: ${theme === "light" ? token.color.grey_10_light : token.color.grey_10_dark};
+  border: 1px solid ${theme === "light" ? token.color.grey_30_light : token.color.grey_30_dark};
+  color: ${theme === "light" ? token.color.grey_50_light : token.color.grey_50_dark};
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  white-space: nowrap;
+  vertical-align: baseline;
+  line-height: 1.875;
+  &:hover {
+    background-color: ${theme === "light" ? token.color.grey_20_light : token.color.grey_20_dark};
   }
 `;
-var ContainerStyle = import_css.css`
-  display: flex;
-  gap: 12px;
-  justify-content: flex-start;
-  align-items: center;
+var dangerStyle = ({ theme, size }) => import_css.css`
+  padding: ${size === "normal" ? "8px 24px 8px 24px" : "4px 24px 4px 24px"};
+  border-radius: 8px;
+  background-color: ${theme === "light" ? token.color.grey_10_light : token.color.grey_10_dark};
+  border: 1px solid ${theme === "light" ? token.color.grey_30_light : token.color.grey_30_dark};
+  color: ${theme === "light" ? token.color.grey_50_light : token.color.grey_50_dark};
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  white-space: nowrap;
+  vertical-align: baseline;
+  line-height: 1.875;
+  &:hover {
+    background-color: ${theme === "light" ? token.color.red_5_light : token.color.red_5_dark};
+    color: ${token.color.red_10_light};
+    border: 1px solid ${token.color.red_10_light};
+  }
 `;
-var profileStyle = import_css.css`
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  background-color: ${token.color.grey_10_light};
-  object-fit: cover;
+var primaryStyle = ({ theme, size }) => import_css.css`
+  padding: ${size === "normal" ? "8px 24px 8px 24px" : "4px 24px 4px 24px"};
+  border-radius: 8px;
+  background-color: ${token.color.main_green_10};
+  border: 1px solid ${theme === "light" ? token.color.grey_30_light : token.color.grey_30_dark};
+  color: ${token.color.grey_5_light};
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  white-space: nowrap;
+  vertical-align: baseline;
+  line-height: 1.875;
+  &:hover {
+    background-color: ${token.color.main_green_20};
+  }
 `;
 export {
-  Avatar
+  Button
 };
