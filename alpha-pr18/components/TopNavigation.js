@@ -1735,63 +1735,152 @@ var require_emotion_css_cjs = __commonJS({
   }
 });
 
-// src/components/Avatar.tsx
+// src/components/TopNavigation.tsx
 var import_css = __toModule(require_emotion_css_cjs());
+import { BellIcon, MoonIcon, PlusIcon, SearchIcon, SunIcon } from "../assets/icons/index.js";
 import { token } from "../common/token/index.js";
-function Avatar({ theme, profileImg, username, createdAt }) {
+import { Text } from "../typography/Text/index.js";
+function TopNavigation({ theme, links, user }) {
   return /* @__PURE__ */ React.createElement("div", {
-    className: ContainerStyle
+    className: containerStyle(theme)
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: wrapperStyle
+  }, /* @__PURE__ */ React.createElement("a", {
+    href: links.homeLink,
+    className: logoStyle(theme)
+  }, "42world"), /* @__PURE__ */ React.createElement("div", {
+    className: iconListStyle
+  }, /* @__PURE__ */ React.createElement("a", {
+    href: links.themeLink,
+    className: iconContainerStyle
+  }, theme === "light" ? /* @__PURE__ */ React.createElement(SunIcon, {
+    color: "grey_50_light"
+  }) : /* @__PURE__ */ React.createElement(MoonIcon, {
+    color: "grey_50_dark"
+  }), /* @__PURE__ */ React.createElement(Text, {
+    align: "center",
+    color: "grey_50",
+    size: "caption",
+    text: theme === "light" ? "\uBC1D\uC740 \uD14C\uB9C8" : "\uC5B4\uB450\uC6B4 \uD14C\uB9C8",
+    theme
+  })), /* @__PURE__ */ React.createElement("a", {
+    href: links.searchLink,
+    className: iconContainerStyle
+  }, /* @__PURE__ */ React.createElement(SearchIcon, {
+    color: theme === "light" ? "grey_50_light" : "grey_50_dark"
+  }), /* @__PURE__ */ React.createElement(Text, {
+    align: "center",
+    color: "grey_50",
+    size: "caption",
+    text: "\uAC80\uC0C9",
+    theme
+  })), /* @__PURE__ */ React.createElement("a", {
+    href: links.createLink,
+    className: iconContainerStyle
+  }, /* @__PURE__ */ React.createElement(PlusIcon, {
+    color: theme === "light" ? "grey_50_light" : "grey_50_dark"
+  }), /* @__PURE__ */ React.createElement(Text, {
+    align: "center",
+    color: "grey_50",
+    size: "caption",
+    text: "\uAE00\uC4F0\uAE30",
+    theme
+  })), /* @__PURE__ */ React.createElement("a", {
+    href: links.alertLink,
+    className: iconContainerStyle
+  }, /* @__PURE__ */ React.createElement(BellIcon, {
+    color: theme === "light" ? "grey_50_light" : "grey_50_dark"
+  }), /* @__PURE__ */ React.createElement(Text, {
+    align: "center",
+    color: "grey_50",
+    size: "caption",
+    text: "\uC54C\uB9BC",
+    theme
+  })), /* @__PURE__ */ React.createElement("a", {
+    href: user.profileLink,
+    className: iconContainerStyle
   }, /* @__PURE__ */ React.createElement("img", {
-    src: profileImg,
-    className: profileStyle
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: detailStyle(theme)
-  }, /* @__PURE__ */ React.createElement("p", null, username), /* @__PURE__ */ React.createElement("p", null, createdAt)));
+    src: user.profileImg,
+    className: profileStyle(theme)
+  }), /* @__PURE__ */ React.createElement(Text, {
+    align: "center",
+    color: "grey_50",
+    size: "caption",
+    text: "\uB098",
+    theme
+  })))), /* @__PURE__ */ React.createElement("style", null, "@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');"));
 }
-var detailStyle = (theme) => import_css.css`
+var containerStyle = (theme) => import_css.css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  border-bottom: 1px solid ${theme === "light" ? token.color.grey_30_light : token.color.grey_30_dark};
+  padding: 8px 0px 8px 0px;
+`;
+var wrapperStyle = import_css.css`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  padding: 0px 20px 0px 20px;
+
+  & a {
+    text-decoration: none;
+  }
+`;
+var logoStyle = (theme) => import_css.css`
+  font-weight: 700;
+  color: ${theme === "light" ? token.color.grey_80_light : token.color.grey_80_dark};
+  font-size: 24px;
+  margin: 0;
+  font-family: 'Raleway', serif;
+  src: url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');
+  @font-face {
+    font-family: 'Raleway', serif;
+    src: url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');
+  }
+
+  @media (max-width: ${token.screenSize.TABLET_SIZE}) {
+    font-size: 22px;
+  }
+`;
+var profileStyle = (theme) => import_css.css`
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  background-color: ${theme === "light" ? token.color.grey_20_light : token.color.grey_20_dark};
+`;
+var iconContainerStyle = import_css.css`
   display: flex;
   flex-direction: column;
-  gap: 1px;
-  white-space: nowrap; // framer에서 import 할 때 text 깨짐 방지
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  width: 70px;
+  text-decoration: none;
 
-  & > * {
-    margin: 0;
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+  @media (max-width: 700px) {
+    width: fit-content;
 
-    @font-face {
-      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-        'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-        'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-      src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
+    & p {
+      display: none;
     }
   }
-
-  & > p:first-of-type {
-    font-size: 16px;
-    color: ${theme === "light" ? token.color.grey_70_light : token.color.grey_70_dark};
-    font-weight: 500;
-  }
-
-  & > p:last-of-type {
-    font-size: 12px;
-    color: ${theme === "light" ? token.color.grey_40_light : token.color.grey_40_dark};
-  }
 `;
-var ContainerStyle = import_css.css`
+var iconListStyle = import_css.css`
   display: flex;
-  gap: 12px;
-  justify-content: flex-start;
-  align-items: center;
-`;
-var profileStyle = import_css.css`
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  background-color: ${token.color.grey_10_light};
-  object-fit: cover;
+  gap: 8px;
+
+  @media (max-width: 700px) {
+    gap: 20px;
+
+    & a:nth-child(3) {
+      display: none;
+    }
+  }
 `;
 export {
-  Avatar
+  TopNavigation
 };

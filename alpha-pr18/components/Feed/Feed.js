@@ -2,35 +2,9 @@ var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getOwnPropSymbols = Object.getOwnPropertySymbols;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __propIsEnum = Object.prototype.propertyIsEnumerable;
-var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __spreadValues = (a, b) => {
-  for (var prop in b || (b = {}))
-    if (__hasOwnProp.call(b, prop))
-      __defNormalProp(a, prop, b[prop]);
-  if (__getOwnPropSymbols)
-    for (var prop of __getOwnPropSymbols(b)) {
-      if (__propIsEnum.call(b, prop))
-        __defNormalProp(a, prop, b[prop]);
-    }
-  return a;
-};
 var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
-var __objRest = (source, exclude) => {
-  var target = {};
-  for (var prop in source)
-    if (__hasOwnProp.call(source, prop) && exclude.indexOf(prop) < 0)
-      target[prop] = source[prop];
-  if (source != null && __getOwnPropSymbols)
-    for (var prop of __getOwnPropSymbols(source)) {
-      if (exclude.indexOf(prop) < 0 && __propIsEnum.call(source, prop))
-        target[prop] = source[prop];
-    }
-  return target;
-};
 var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[Object.keys(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
@@ -1761,161 +1735,98 @@ var require_emotion_css_cjs = __commonJS({
   }
 });
 
-// src/components/Input.tsx
+// src/components/Feed/Feed.tsx
 var import_css = __toModule(require_emotion_css_cjs());
-import {
-  createElement,
-  useCallback,
-  useState
-} from "react";
-import { tokens } from "../tokens.js";
-import { Text } from "../typography/Text.js";
-function Input(_a) {
-  var _b = _a, {
-    theme,
-    value,
-    placeholder,
-    isError,
-    errorMessage,
-    onFocus,
-    onBlur,
-    onChangeless
-  } = _b, rest = __objRest(_b, [
-    "theme",
-    "value",
-    "placeholder",
-    "isError",
-    "errorMessage",
-    "onFocus",
-    "onBlur",
-    "onChangeless"
-  ]);
-  const [isFocus, setIsFocus] = useState(false);
-  const handleFocus = useCallback((event) => {
-    setIsFocus(true);
-    if (onFocus) {
-      onFocus(event);
-    }
-  }, [onFocus]);
-  const handleBlur = useCallback((event) => {
-    setIsFocus(false);
-    if (onBlur) {
-      onBlur(event);
-    }
-  }, [onBlur]);
-  return /* @__PURE__ */ createElement("div", null, /* @__PURE__ */ createElement("div", {
-    className: containerStyle(theme, isError)
-  }, /* @__PURE__ */ createElement("span", {
-    className: placeholderStyle(theme, isFocus, value.length > 0, isError, onChangeless)
-  }, placeholder), /* @__PURE__ */ createElement("div", {
-    className: inputWrapperStyle(onChangeless)
-  }, /* @__PURE__ */ createElement("input", __spreadValues({
-    className: inputStyle(theme, isError),
-    value,
-    onFocus: handleFocus,
-    onBlur: handleBlur
-  }, rest)))), isError && /* @__PURE__ */ createElement("div", {
-    className: errorWrapperStyle
-  }, /* @__PURE__ */ createElement(Text, {
-    theme,
-    size: "Caption",
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { ChatIcon, ThumbIcon } from "../../assets/icons/index.js";
+import { token } from "../../common/token/index.js";
+import { Text } from "../../typography/Text/index.js";
+import { Avatar } from "../Avatar.js";
+function Feed({ theme, title, contents, isThumbed, thumbCount, commentCount, user }) {
+  const thumbedStyle = "main_green_10";
+  const unThumbedStyle = theme === "light" ? "grey_50_light" : "grey_50_dark";
+  const [thumbed, setThumbed] = useState(isThumbed);
+  return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", {
+    className: contentsStyle
+  }, /* @__PURE__ */ React.createElement(Avatar, {
+    createdAt: user.createdAt,
+    username: user.username,
+    profileImg: user.profileImg,
+    theme
+  }), /* @__PURE__ */ React.createElement(Text, {
     align: "left",
-    text: errorMessage != null ? errorMessage : "",
-    color: "red_10"
-  })));
+    color: "grey_60",
+    size: "header4",
+    text: title,
+    theme
+  }), /* @__PURE__ */ React.createElement("p", {
+    className: feedTextStyle(theme)
+  }, contents)), /* @__PURE__ */ React.createElement("div", {
+    className: bottomStyle(theme)
+  }, /* @__PURE__ */ React.createElement(motion.div, {
+    whileTap: { scale: 0.9 },
+    className: iconContainerStyle,
+    onClick: () => setThumbed(!thumbed)
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: iconStyle
+  }, /* @__PURE__ */ React.createElement(ThumbIcon, {
+    color: thumbed ? thumbedStyle : unThumbedStyle
+  })), /* @__PURE__ */ React.createElement(Text, {
+    align: "left",
+    color: thumbed ? "main_green_10" : "grey_50",
+    size: "body3",
+    text: thumbCount.toString(),
+    theme
+  })), /* @__PURE__ */ React.createElement("div", {
+    className: iconContainerStyle
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: iconStyle
+  }, /* @__PURE__ */ React.createElement(ChatIcon, {
+    color: theme === "light" ? "grey_50_light" : "grey_50_dark"
+  })), /* @__PURE__ */ React.createElement(Text, {
+    align: "left",
+    color: "grey_50",
+    size: "body3",
+    text: commentCount.toString(),
+    theme
+  }))));
 }
-var containerStyle = (theme, isError) => import_css.css`
-  box-sizing: border-box;
+var contentsStyle = import_css.css`
   display: flex;
-  flex: 1 0 0;
-  height: 48px;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0 15px 0 15px;
-  overflow: visible;
-  position: relative;
-  align-content: center;
-  flex-wrap: nowrap;
-  gap: 0;
-  border-radius: 8px;
-  border: 1px solid ${theme === "light" ? tokens.color.grey_40_light : tokens.color.grey_40_dark};
-  &:focus-within {
-    border-color: ${tokens.color.main_green_10};
-  }
-  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue',
-    'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
-    'Segoe UI Symbol', sans-serif;
-  @font-face {
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-    src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
-  }
-  transition: border-color 0.2s ease-in-out;
-  ${isError && import_css.css`
-    color: ${tokens.color.red_20_light};
-    border-color: ${tokens.color.red_10_light};
-    &:focus-within {
-      border-color: ${tokens.color.red_10_light};
-    }
-  `}
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 22px;
 `;
-var inputWrapperStyle = (onChangeless) => import_css.css`
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  flex: 0 0 auto;
-  height: ${onChangeless ? "100%" : "34px"};
-  z-index: 2;
-`;
-var inputStyle = (theme, isError) => import_css.css`
-  color: ${theme === "light" ? tokens.color.grey_60_light : tokens.color.grey_60_dark};
+var feedTextStyle = (theme) => import_css.css`
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   font-size: 16px;
-  caret-color: rgb(255, 255, 255);
-  font-family: 'Pretendard Medium', serif;
-  font-weight: 100;
-  appearance: none;
-  border: none;
-  border-radius: unset;
-  margin: unset;
-  outline: unset;
-  box-sizing: border-box;
-  background: unset;
-  width: 100%;
-  height: 100%;
-  padding: 15px;
-  ${isError && import_css.css`
-    color: ${tokens.color.red_20_light};
-  `};
+  font-weight: 400;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto;
+  color: ${theme === "light" ? token.color.grey_50_light : token.color.grey_50_dark};
+  line-height: 1.5;
 `;
-var placeholderStyle = (theme, isFocus, isTyping, isError, onChangeless) => import_css.css`
-  display: ${onChangeless && isTyping ? "none" : "block"};
-  position: absolute;
-  top: ${isTyping ? "8px" : "50%"};
-  left: 15px;
-  flex-shrink: 0;
-  width: auto;
-  height: auto;
-  white-space: pre;
-  z-index: 1;
-  font-family: 'Pretendard Regular', serif;
-  color: ${isFocus && isTyping ? tokens.color.main_green_20 : theme === "light" ? tokens.color.grey_40_light : tokens.color.grey_40_dark};
-  transform: ${isTyping ? "none" : " translateY(-50%)"};
-  transform-origin: 50% 50% 0;
-  font-size: ${isTyping ? "10px" : "14px"};
-  line-height: ${isTyping ? "1.2" : "1.4"};
-  transition-duration: 0.2s;
-  transition-property: transform, color, top, line-height;
-  ${isError && import_css.css`
-    color: ${tokens.color.red_20_light};
-  `}
+var bottomStyle = (theme) => import_css.css`
+  display: flex;
+  padding: 8px 0px 16px 0px;
+  gap: 16px;
+  border-bottom: 1px solid ${theme === "light" ? token.color.grey_30_light : token.color.grey_30_dark};
 `;
-var errorWrapperStyle = import_css.css`
-  margin-top: 8px;
-  margin-left: 15px;
+var iconContainerStyle = import_css.css`
+  display: flex;
+  gap: 6px;
+`;
+var iconStyle = import_css.css`
+  width: 18px;
+  height: 18px;
 `;
 export {
-  Input
+  Feed
 };
