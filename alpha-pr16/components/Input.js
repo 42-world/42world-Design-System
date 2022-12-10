@@ -2,9 +2,35 @@ var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
 var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
+var __objRest = (source, exclude) => {
+  var target = {};
+  for (var prop in source)
+    if (__hasOwnProp.call(source, prop) && exclude.indexOf(prop) < 0)
+      target[prop] = source[prop];
+  if (source != null && __getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(source)) {
+      if (exclude.indexOf(prop) < 0 && __propIsEnum.call(source, prop))
+        target[prop] = source[prop];
+    }
+  return target;
+};
 var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[Object.keys(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
@@ -1735,66 +1761,161 @@ var require_emotion_css_cjs = __commonJS({
   }
 });
 
-// src/components/Avatar.tsx
+// src/components/Input.tsx
 var import_css = __toModule(require_emotion_css_cjs());
 import {
-  createElement
+  createElement,
+  useCallback,
+  useState
 } from "react";
 import { tokens } from "../tokens.js";
-function Avatar({ theme, profileImg, username, createdAt }) {
-  const detailStyle = import_css.css`
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-    white-space: nowrap; // framer에서 import 할 때 text 깨짐 방지
-
-    & > * {
-      margin: 0;
-      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-        'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-        'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-
-      @font-face {
-        font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-          'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-          'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-        src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
-      }
+import { Text } from "../typography/Text.js";
+function Input(_a) {
+  var _b = _a, {
+    theme,
+    value,
+    placeholder,
+    isError,
+    errorMessage,
+    onFocus,
+    onBlur,
+    onChangeless
+  } = _b, rest = __objRest(_b, [
+    "theme",
+    "value",
+    "placeholder",
+    "isError",
+    "errorMessage",
+    "onFocus",
+    "onBlur",
+    "onChangeless"
+  ]);
+  const [isFocus, setIsFocus] = useState(false);
+  const handleFocus = useCallback((event) => {
+    setIsFocus(true);
+    if (onFocus) {
+      onFocus(event);
     }
-
-    & > p:first-of-type {
-      font-size: 16px;
-      color: ${theme === "light" ? tokens.color.grey_70_light : tokens.color.grey_70_dark};
-      font-weight: 500;
+  }, [onFocus]);
+  const handleBlur = useCallback((event) => {
+    setIsFocus(false);
+    if (onBlur) {
+      onBlur(event);
     }
-
-    & > p:last-of-type {
-      font-size: 12px;
-      color: ${theme === "light" ? tokens.color.grey_40_light : tokens.color.grey_40_dark};
-    }
-  `;
-  return /* @__PURE__ */ createElement("div", {
-    className: ContainerStyle
-  }, /* @__PURE__ */ createElement("img", {
-    src: profileImg,
-    className: profileStyle
-  }), /* @__PURE__ */ createElement("div", {
-    className: detailStyle
-  }, /* @__PURE__ */ createElement("p", null, username), /* @__PURE__ */ createElement("p", null, createdAt)));
+  }, [onBlur]);
+  return /* @__PURE__ */ createElement("div", null, /* @__PURE__ */ createElement("div", {
+    className: containerStyle(theme, isError)
+  }, /* @__PURE__ */ createElement("span", {
+    className: placeholderStyle(theme, isFocus, value.length > 0, isError, onChangeless)
+  }, placeholder), /* @__PURE__ */ createElement("div", {
+    className: inputWrapperStyle(onChangeless)
+  }, /* @__PURE__ */ createElement("input", __spreadValues({
+    className: inputStyle(theme, isError),
+    value,
+    onFocus: handleFocus,
+    onBlur: handleBlur
+  }, rest)))), isError && /* @__PURE__ */ createElement("div", {
+    className: errorWrapperStyle
+  }, /* @__PURE__ */ createElement(Text, {
+    theme,
+    size: "Caption",
+    align: "left",
+    text: errorMessage != null ? errorMessage : "",
+    color: "red_10"
+  })));
 }
-var ContainerStyle = import_css.css`
+var containerStyle = (theme, isError) => import_css.css`
+  box-sizing: border-box;
   display: flex;
-  gap: 12px;
+  flex: 1 0 0;
+  height: 48px;
+  flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  padding: 0 15px 0 15px;
+  overflow: visible;
+  position: relative;
+  align-content: center;
+  flex-wrap: nowrap;
+  gap: 0;
+  border-radius: 8px;
+  border: 1px solid ${theme === "light" ? tokens.color.grey_40_light : tokens.color.grey_40_dark};
+  &:focus-within {
+    border-color: ${tokens.color.main_green_10};
+  }
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue',
+    'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', sans-serif;
+  @font-face {
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
+      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+    src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
+  }
+  transition: border-color 0.2s ease-in-out;
+  ${isError && import_css.css`
+    color: ${tokens.color.red_20_light};
+    border-color: ${tokens.color.red_10_light};
+    &:focus-within {
+      border-color: ${tokens.color.red_10_light};
+    }
+  `}
 `;
-var profileStyle = import_css.css`
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  background-color: ${tokens.color.grey_10_light};
-  object-fit: cover;
+var inputWrapperStyle = (onChangeless) => import_css.css`
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  flex: 0 0 auto;
+  height: ${onChangeless ? "100%" : "34px"};
+  z-index: 2;
+`;
+var inputStyle = (theme, isError) => import_css.css`
+  color: ${theme === "light" ? tokens.color.grey_60_light : tokens.color.grey_60_dark};
+  font-size: 16px;
+  caret-color: rgb(255, 255, 255);
+  font-family: 'Pretendard Medium', serif;
+  font-weight: 100;
+  appearance: none;
+  border: none;
+  border-radius: unset;
+  margin: unset;
+  outline: unset;
+  box-sizing: border-box;
+  background: unset;
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  ${isError && import_css.css`
+    color: ${tokens.color.red_20_light};
+  `};
+`;
+var placeholderStyle = (theme, isFocus, isTyping, isError, onChangeless) => import_css.css`
+  display: ${onChangeless && isTyping ? "none" : "block"};
+  position: absolute;
+  top: ${isTyping ? "8px" : "50%"};
+  left: 15px;
+  flex-shrink: 0;
+  width: auto;
+  height: auto;
+  white-space: pre;
+  z-index: 1;
+  font-family: 'Pretendard Regular', serif;
+  color: ${isFocus && isTyping ? tokens.color.main_green_20 : theme === "light" ? tokens.color.grey_40_light : tokens.color.grey_40_dark};
+  transform: ${isTyping ? "none" : " translateY(-50%)"};
+  transform-origin: 50% 50% 0;
+  font-size: ${isTyping ? "10px" : "14px"};
+  line-height: ${isTyping ? "1.2" : "1.4"};
+  transition-duration: 0.2s;
+  transition-property: transform, color, top, line-height;
+  ${isError && import_css.css`
+    color: ${tokens.color.red_20_light};
+  `}
+`;
+var errorWrapperStyle = import_css.css`
+  margin-top: 8px;
+  margin-left: 15px;
 `;
 export {
-  Avatar
+  Input
 };

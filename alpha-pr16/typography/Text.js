@@ -1735,20 +1735,27 @@ var require_emotion_css_cjs = __commonJS({
   }
 });
 
-// src/components/Avatar.tsx
+// src/typography/Text.tsx
 var import_css = __toModule(require_emotion_css_cjs());
 import {
   createElement
 } from "react";
 import { tokens } from "../tokens.js";
-function Avatar({ theme, profileImg, username, createdAt }) {
-  const detailStyle = import_css.css`
+function Text({ theme, size, color, align, text }) {
+  const textStyle = import_css.css`
     display: flex;
-    flex-direction: column;
-    gap: 1px;
-    white-space: nowrap; // framer에서 import 할 때 text 깨짐 방지
+    justify-content: ${align};
 
-    & > * {
+    & h1,
+    h2,
+    h3,
+    h4,
+    p {
+      /* white-space: nowrap; */
+      font-size: ${size === "Header1" ? "45px" : size === "Header2" ? "36px" : size === "Header3" ? "26px" : size === "Header4" ? "18px" : size === "Body1" ? "18px" : size === "Body2" ? "16px" : size === "Body3" ? "14px" : size === "Caption" ? "12px" : "16px"};
+      font-weight: ${size === "Header1" ? 600 : size === "Header2" ? 600 : size === "Header3" ? 600 : size === "Header4" ? 600 : size === "Body1" ? 500 : 500};
+      width: 1fr;
+      line-height: 1.25;
       margin: 0;
       font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
         'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
@@ -1761,40 +1768,14 @@ function Avatar({ theme, profileImg, username, createdAt }) {
         src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
       }
     }
-
-    & > p:first-of-type {
-      font-size: 16px;
-      color: ${theme === "light" ? tokens.color.grey_70_light : tokens.color.grey_70_dark};
-      font-weight: 500;
-    }
-
-    & > p:last-of-type {
-      font-size: 12px;
-      color: ${theme === "light" ? tokens.color.grey_40_light : tokens.color.grey_40_dark};
-    }
   `;
+  const COLOR_LIGHT = color === "grey_40" ? tokens.color.grey_40_light : color === "grey_50" ? tokens.color.grey_50_light : color === "grey_60" ? tokens.color.grey_60_light : color === "grey_70" ? tokens.color.grey_70_light : color === "main_green_10" ? tokens.color.main_green_10 : color === "red_10" ? tokens.color.red_10_light : tokens.color.grey_50_light;
+  const COLOR_DARK = color === "grey_40" ? tokens.color.grey_40_dark : color === "grey_50" ? tokens.color.grey_50_dark : color === "grey_60" ? tokens.color.grey_60_dark : color === "grey_70" ? tokens.color.grey_70_dark : color === "main_green_10" ? tokens.color.main_green_10 : color === "red_10" ? tokens.color.red_10_light : tokens.color.grey_50_light;
   return /* @__PURE__ */ createElement("div", {
-    className: ContainerStyle
-  }, /* @__PURE__ */ createElement("img", {
-    src: profileImg,
-    className: profileStyle
-  }), /* @__PURE__ */ createElement("div", {
-    className: detailStyle
-  }, /* @__PURE__ */ createElement("p", null, username), /* @__PURE__ */ createElement("p", null, createdAt)));
+    className: textStyle,
+    style: { color: theme === "light" ? COLOR_LIGHT : COLOR_DARK }
+  }, size === "Header1" ? /* @__PURE__ */ createElement("h1", null, text) : size === "Header2" ? /* @__PURE__ */ createElement("h2", null, text) : size === "Header3" ? /* @__PURE__ */ createElement("h3", null, text) : size === "Header4" ? /* @__PURE__ */ createElement("h4", null, text) : /* @__PURE__ */ createElement("p", null, text));
 }
-var ContainerStyle = import_css.css`
-  display: flex;
-  gap: 12px;
-  justify-content: flex-start;
-  align-items: center;
-`;
-var profileStyle = import_css.css`
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  background-color: ${tokens.color.grey_10_light};
-  object-fit: cover;
-`;
 export {
-  Avatar
+  Text
 };
