@@ -1735,114 +1735,35 @@ var require_emotion_css_cjs = __commonJS({
   }
 });
 
-// src/components/Button.tsx
+// src/typography/text/Text.tsx
 var import_css = __toModule(require_emotion_css_cjs());
 import {
   createElement
 } from "react";
-import { token } from "../common/token/index.js";
-function Button({ theme, text, link, size, type }) {
-  const defaultStyle = import_css.css`
-    padding: ${size === "normal" ? "8px 24px 8px 24px" : "4px 24px 4px 24px"};
-    border-radius: 8px;
-    background-color: ${theme === "light" ? token.color.grey_10_light : token.color.grey_10_dark};
-    border: 1px solid ${theme === "light" ? token.color.grey_30_light : token.color.grey_30_dark};
-    color: ${theme === "light" ? token.color.grey_50_light : token.color.grey_50_dark};
-    font-weight: 500;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    white-space: nowrap;
-    vertical-align: baseline;
-    line-height: 1.875;
-
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-
-    @font-face {
-      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-        'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-        'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-      src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
-    }
-
-    &:hover {
-      background-color: ${theme === "light" ? token.color.grey_20_light : token.color.grey_20_dark};
-    }
-  `;
-  const dangerStyle = import_css.css`
-    padding: ${size === "normal" ? "8px 24px 8px 24px" : "4px 24px 4px 24px"};
-    border-radius: 8px;
-    background-color: ${theme === "light" ? token.color.grey_10_light : token.color.grey_10_dark};
-    border: 1px solid ${theme === "light" ? token.color.grey_30_light : token.color.grey_30_dark};
-    color: ${theme === "light" ? token.color.grey_50_light : token.color.grey_50_dark};
-    font-weight: 500;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    white-space: nowrap;
-    vertical-align: baseline;
-    line-height: 1.875;
-
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-
-    @font-face {
-      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-        'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-        'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-      src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
-    }
-
-    &:hover {
-      background-color: ${theme === "light" ? token.color.red_5_light : token.color.red_5_dark};
-      color: ${token.color.red_10_light};
-      border: 1px solid ${token.color.red_10_light};
-    }
-  `;
-  const primaryStyle = import_css.css`
-    padding: ${size === "normal" ? "8px 24px 8px 24px" : "4px 24px 4px 24px"};
-    border-radius: 8px;
-    background-color: ${token.color.main_green_10};
-    border: 1px solid ${theme === "light" ? token.color.grey_30_light : token.color.grey_30_dark};
-    color: ${token.color.grey_5_light};
-    font-weight: 500;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    white-space: nowrap;
-    vertical-align: baseline;
-    line-height: 1.875;
-
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-
-    @font-face {
-      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-        'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-        'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-      src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
-    }
-
-    &:hover {
-      background-color: ${token.color.main_green_20};
-    }
-  `;
-  return /* @__PURE__ */ createElement("a", {
-    type: "button",
-    className: type === "default" ? defaultStyle : type === "danger" ? dangerStyle : type === "primary" ? primaryStyle : defaultStyle,
-    href: link
-  }, text);
+import { getFontSize, getFontWeight, getThemeColor } from "./utils/index.js";
+function Text({ theme, size, color, align, text }) {
+  return /* @__PURE__ */ createElement("div", {
+    className: textStyle(align, size),
+    style: { color: getThemeColor(theme, color) }
+  }, size === "header1" ? /* @__PURE__ */ createElement("h1", null, text) : size === "header2" ? /* @__PURE__ */ createElement("h2", null, text) : size === "header3" ? /* @__PURE__ */ createElement("h3", null, text) : size === "header4" ? /* @__PURE__ */ createElement("h4", null, text) : /* @__PURE__ */ createElement("p", null, text));
 }
+var textStyle = (align, size) => import_css.css`
+  display: flex;
+  justify-content: ${align};
+
+  & h1,
+  h2,
+  h3,
+  h4,
+  p {
+    /* white-space: nowrap; */
+    font-size: ${getFontSize(size)};
+    font-weight: ${getFontWeight(size)}};
+    width: 1fr;
+    line-height: 1.25;
+    margin: 0;
+  }
+`;
 export {
-  Button
+  Text
 };

@@ -1735,114 +1735,155 @@ var require_emotion_css_cjs = __commonJS({
   }
 });
 
-// src/components/Button.tsx
+// src/components/TopNavigation.tsx
 var import_css = __toModule(require_emotion_css_cjs());
 import {
   createElement
 } from "react";
-import { token } from "../common/token/index.js";
-function Button({ theme, text, link, size, type }) {
-  const defaultStyle = import_css.css`
-    padding: ${size === "normal" ? "8px 24px 8px 24px" : "4px 24px 4px 24px"};
-    border-radius: 8px;
-    background-color: ${theme === "light" ? token.color.grey_10_light : token.color.grey_10_dark};
-    border: 1px solid ${theme === "light" ? token.color.grey_30_light : token.color.grey_30_dark};
-    color: ${theme === "light" ? token.color.grey_50_light : token.color.grey_50_dark};
-    font-weight: 500;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    white-space: nowrap;
-    vertical-align: baseline;
-    line-height: 1.875;
-
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-
-    @font-face {
-      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-        'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-        'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-      src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
-    }
-
-    &:hover {
-      background-color: ${theme === "light" ? token.color.grey_20_light : token.color.grey_20_dark};
-    }
-  `;
-  const dangerStyle = import_css.css`
-    padding: ${size === "normal" ? "8px 24px 8px 24px" : "4px 24px 4px 24px"};
-    border-radius: 8px;
-    background-color: ${theme === "light" ? token.color.grey_10_light : token.color.grey_10_dark};
-    border: 1px solid ${theme === "light" ? token.color.grey_30_light : token.color.grey_30_dark};
-    color: ${theme === "light" ? token.color.grey_50_light : token.color.grey_50_dark};
-    font-weight: 500;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    white-space: nowrap;
-    vertical-align: baseline;
-    line-height: 1.875;
-
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-
-    @font-face {
-      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-        'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-        'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-      src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
-    }
-
-    &:hover {
-      background-color: ${theme === "light" ? token.color.red_5_light : token.color.red_5_dark};
-      color: ${token.color.red_10_light};
-      border: 1px solid ${token.color.red_10_light};
-    }
-  `;
-  const primaryStyle = import_css.css`
-    padding: ${size === "normal" ? "8px 24px 8px 24px" : "4px 24px 4px 24px"};
-    border-radius: 8px;
-    background-color: ${token.color.main_green_10};
-    border: 1px solid ${theme === "light" ? token.color.grey_30_light : token.color.grey_30_dark};
-    color: ${token.color.grey_5_light};
-    font-weight: 500;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    white-space: nowrap;
-    vertical-align: baseline;
-    line-height: 1.875;
-
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-
-    @font-face {
-      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-        'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-        'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-      src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
-    }
-
-    &:hover {
-      background-color: ${token.color.main_green_20};
-    }
-  `;
-  return /* @__PURE__ */ createElement("a", {
-    type: "button",
-    className: type === "default" ? defaultStyle : type === "danger" ? dangerStyle : type === "primary" ? primaryStyle : defaultStyle,
-    href: link
-  }, text);
+import Icons from "../assets/icons/index.js";
+import { tokens } from "../tokens.js";
+import { Text } from "../typography/Text.js";
+function TopNavigation({ theme, links, user }) {
+  return /* @__PURE__ */ createElement("div", {
+    className: containerStyle(theme)
+  }, /* @__PURE__ */ createElement("div", {
+    className: wrapperStyle
+  }, /* @__PURE__ */ createElement("a", {
+    href: links.homeLink,
+    className: logoStyle(theme)
+  }, "42world"), /* @__PURE__ */ createElement("div", {
+    className: iconListStyle
+  }, /* @__PURE__ */ createElement("a", {
+    href: links.themeLink,
+    className: iconContainerStyle
+  }, theme === "light" ? /* @__PURE__ */ createElement(Icons.Sun, {
+    color: tokens.color.grey_50_light
+  }) : /* @__PURE__ */ createElement(Icons.Moon, {
+    color: tokens.color.grey_50_dark
+  }), /* @__PURE__ */ createElement(Text, {
+    align: "center",
+    color: "grey_50",
+    size: "Caption",
+    text: theme === "light" ? "\uBC1D\uC740 \uD14C\uB9C8" : "\uC5B4\uB450\uC6B4 \uD14C\uB9C8",
+    theme
+  })), /* @__PURE__ */ createElement("a", {
+    href: links.searchLink,
+    className: iconContainerStyle
+  }, /* @__PURE__ */ createElement(Icons.Search, {
+    color: theme === "light" ? tokens.color.grey_50_light : tokens.color.grey_50_dark
+  }), /* @__PURE__ */ createElement(Text, {
+    align: "center",
+    color: "grey_50",
+    size: "Caption",
+    text: "\uAC80\uC0C9",
+    theme
+  })), /* @__PURE__ */ createElement("a", {
+    href: links.createLink,
+    className: iconContainerStyle
+  }, /* @__PURE__ */ createElement(Icons.Plus, {
+    color: theme === "light" ? tokens.color.grey_50_light : tokens.color.grey_50_dark
+  }), /* @__PURE__ */ createElement(Text, {
+    align: "center",
+    color: "grey_50",
+    size: "Caption",
+    text: "\uAE00\uC4F0\uAE30",
+    theme
+  })), /* @__PURE__ */ createElement("a", {
+    href: links.alertLink,
+    className: iconContainerStyle
+  }, /* @__PURE__ */ createElement(Icons.Bell, {
+    color: theme === "light" ? tokens.color.grey_50_light : tokens.color.grey_50_dark
+  }), /* @__PURE__ */ createElement(Text, {
+    align: "center",
+    color: "grey_50",
+    size: "Caption",
+    text: "\uC54C\uB9BC",
+    theme
+  })), /* @__PURE__ */ createElement("a", {
+    href: user.profileLink,
+    className: iconContainerStyle
+  }, /* @__PURE__ */ createElement("img", {
+    src: user.profileImg,
+    className: profileStyle(theme)
+  }), /* @__PURE__ */ createElement(Text, {
+    align: "center",
+    color: "grey_50",
+    size: "Caption",
+    text: "\uB098",
+    theme
+  })))), /* @__PURE__ */ createElement("style", null, "@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');"));
 }
+var containerStyle = (theme) => import_css.css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  border-bottom: 1px solid ${theme === "light" ? tokens.color.grey_30_light : tokens.color.grey_30_dark};
+  padding: 8px 0px 8px 0px;
+`;
+var wrapperStyle = import_css.css`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  padding: 0px 20px 0px 20px;
+
+  & a {
+    text-decoration: none;
+  }
+`;
+var logoStyle = (theme) => import_css.css`
+  font-weight: 700;
+  color: ${theme === "light" ? tokens.color.grey_80_light : tokens.color.grey_80_dark};
+  font-size: 24px;
+  margin: 0;
+  font-family: 'Raleway', serif;
+  src: url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');
+  @font-face {
+    font-family: 'Raleway', serif;
+    src: url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');
+  }
+
+  @media (max-width: ${tokens.size.TABLET_SIZE}) {
+    font-size: 22px;
+  }
+`;
+var profileStyle = (theme) => import_css.css`
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  background-color: ${theme === "light" ? tokens.color.grey_20_light : tokens.color.grey_20_dark};
+`;
+var iconContainerStyle = import_css.css`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  width: 70px;
+  text-decoration: none;
+
+  @media (max-width: 700px) {
+    width: fit-content;
+
+    & p {
+      display: none;
+    }
+  }
+`;
+var iconListStyle = import_css.css`
+  display: flex;
+  gap: 8px;
+
+  @media (max-width: 700px) {
+    gap: 20px;
+
+    & a:nth-child(3) {
+      display: none;
+    }
+  }
+`;
 export {
-  Button
+  TopNavigation
 };

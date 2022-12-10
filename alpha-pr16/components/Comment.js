@@ -1735,114 +1735,46 @@ var require_emotion_css_cjs = __commonJS({
   }
 });
 
-// src/components/Button.tsx
+// src/components/Comment.tsx
 var import_css = __toModule(require_emotion_css_cjs());
-import {
-  createElement
-} from "react";
-import { token } from "../common/token/index.js";
-function Button({ theme, text, link, size, type }) {
-  const defaultStyle = import_css.css`
-    padding: ${size === "normal" ? "8px 24px 8px 24px" : "4px 24px 4px 24px"};
-    border-radius: 8px;
-    background-color: ${theme === "light" ? token.color.grey_10_light : token.color.grey_10_dark};
-    border: 1px solid ${theme === "light" ? token.color.grey_30_light : token.color.grey_30_dark};
-    color: ${theme === "light" ? token.color.grey_50_light : token.color.grey_50_dark};
-    font-weight: 500;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    white-space: nowrap;
-    vertical-align: baseline;
-    line-height: 1.875;
-
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-
-    @font-face {
-      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-        'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-        'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-      src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
-    }
-
-    &:hover {
-      background-color: ${theme === "light" ? token.color.grey_20_light : token.color.grey_20_dark};
-    }
-  `;
-  const dangerStyle = import_css.css`
-    padding: ${size === "normal" ? "8px 24px 8px 24px" : "4px 24px 4px 24px"};
-    border-radius: 8px;
-    background-color: ${theme === "light" ? token.color.grey_10_light : token.color.grey_10_dark};
-    border: 1px solid ${theme === "light" ? token.color.grey_30_light : token.color.grey_30_dark};
-    color: ${theme === "light" ? token.color.grey_50_light : token.color.grey_50_dark};
-    font-weight: 500;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    white-space: nowrap;
-    vertical-align: baseline;
-    line-height: 1.875;
-
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-
-    @font-face {
-      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-        'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-        'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-      src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
-    }
-
-    &:hover {
-      background-color: ${theme === "light" ? token.color.red_5_light : token.color.red_5_dark};
-      color: ${token.color.red_10_light};
-      border: 1px solid ${token.color.red_10_light};
-    }
-  `;
-  const primaryStyle = import_css.css`
-    padding: ${size === "normal" ? "8px 24px 8px 24px" : "4px 24px 4px 24px"};
-    border-radius: 8px;
-    background-color: ${token.color.main_green_10};
-    border: 1px solid ${theme === "light" ? token.color.grey_30_light : token.color.grey_30_dark};
-    color: ${token.color.grey_5_light};
-    font-weight: 500;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    white-space: nowrap;
-    vertical-align: baseline;
-    line-height: 1.875;
-
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-
-    @font-face {
-      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-        'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-        'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-      src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
-    }
-
-    &:hover {
-      background-color: ${token.color.main_green_20};
-    }
-  `;
-  return /* @__PURE__ */ createElement("a", {
-    type: "button",
-    className: type === "default" ? defaultStyle : type === "danger" ? dangerStyle : type === "primary" ? primaryStyle : defaultStyle,
-    href: link
-  }, text);
+import React from "react";
+import { Text } from "../typography/Text.js";
+import { Avatar } from "./Avatar.js";
+function Comment({ theme, text, isThumbed, thumbCount, user }) {
+  return /* @__PURE__ */ React.createElement("div", {
+    className: containerStyle
+  }, /* @__PURE__ */ React.createElement(Avatar, {
+    createdAt: user.createdAt,
+    profileImg: user.profileImg,
+    theme,
+    username: user.username
+  }), /* @__PURE__ */ React.createElement("div", {
+    className: textWrapperStyle
+  }, /* @__PURE__ */ React.createElement(Text, {
+    size: "Body3",
+    align: "left",
+    color: "grey_50",
+    text,
+    theme
+  }), /* @__PURE__ */ React.createElement(Text, {
+    size: "Caption",
+    align: "left",
+    color: isThumbed ? "main_green_10" : "grey_50",
+    text: `\uC88B\uC544\uC694 ${thumbCount}`,
+    theme
+  })));
 }
+var containerStyle = import_css.css`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
+var textWrapperStyle = import_css.css`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 52px;
+`;
 export {
-  Button
+  Comment
 };

@@ -1735,114 +1735,112 @@ var require_emotion_css_cjs = __commonJS({
   }
 });
 
-// src/components/Button.tsx
+// src/components/Tabs.tsx
 var import_css = __toModule(require_emotion_css_cjs());
-import {
-  createElement
-} from "react";
-import { token } from "../common/token/index.js";
-function Button({ theme, text, link, size, type }) {
-  const defaultStyle = import_css.css`
-    padding: ${size === "normal" ? "8px 24px 8px 24px" : "4px 24px 4px 24px"};
-    border-radius: 8px;
-    background-color: ${theme === "light" ? token.color.grey_10_light : token.color.grey_10_dark};
-    border: 1px solid ${theme === "light" ? token.color.grey_30_light : token.color.grey_30_dark};
-    color: ${theme === "light" ? token.color.grey_50_light : token.color.grey_50_dark};
-    font-weight: 500;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    white-space: nowrap;
-    vertical-align: baseline;
-    line-height: 1.875;
-
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-
-    @font-face {
-      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-        'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-        'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-      src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
-    }
-
-    &:hover {
-      background-color: ${theme === "light" ? token.color.grey_20_light : token.color.grey_20_dark};
-    }
-  `;
-  const dangerStyle = import_css.css`
-    padding: ${size === "normal" ? "8px 24px 8px 24px" : "4px 24px 4px 24px"};
-    border-radius: 8px;
-    background-color: ${theme === "light" ? token.color.grey_10_light : token.color.grey_10_dark};
-    border: 1px solid ${theme === "light" ? token.color.grey_30_light : token.color.grey_30_dark};
-    color: ${theme === "light" ? token.color.grey_50_light : token.color.grey_50_dark};
-    font-weight: 500;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    white-space: nowrap;
-    vertical-align: baseline;
-    line-height: 1.875;
-
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-
-    @font-face {
-      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-        'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-        'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-      src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
-    }
-
-    &:hover {
-      background-color: ${theme === "light" ? token.color.red_5_light : token.color.red_5_dark};
-      color: ${token.color.red_10_light};
-      border: 1px solid ${token.color.red_10_light};
-    }
-  `;
-  const primaryStyle = import_css.css`
-    padding: ${size === "normal" ? "8px 24px 8px 24px" : "4px 24px 4px 24px"};
-    border-radius: 8px;
-    background-color: ${token.color.main_green_10};
-    border: 1px solid ${theme === "light" ? token.color.grey_30_light : token.color.grey_30_dark};
-    color: ${token.color.grey_5_light};
-    font-weight: 500;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    white-space: nowrap;
-    vertical-align: baseline;
-    line-height: 1.875;
-
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-
-    @font-face {
-      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-        'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-        'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-      src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
-    }
-
-    &:hover {
-      background-color: ${token.color.main_green_20};
-    }
-  `;
-  return /* @__PURE__ */ createElement("a", {
-    type: "button",
-    className: type === "default" ? defaultStyle : type === "danger" ? dangerStyle : type === "primary" ? primaryStyle : defaultStyle,
-    href: link
-  }, text);
+import { AnimatePresence, motion } from "framer-motion";
+import React, { useState } from "react";
+import { tokens } from "../tokens.js";
+import { Text } from "../typography/Text.js";
+function Tabs({ label, children, align, theme }) {
+  const [selectedTab, setSelectedTab] = useState(label[0]);
+  const tabIndex = label.indexOf(selectedTab);
+  return /* @__PURE__ */ React.createElement("div", {
+    className: ContainerStyle(theme)
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: NavigationStyle(theme)
+  }, /* @__PURE__ */ React.createElement("ul", {
+    className: ListContainerStyle(align)
+  }, label.map((item, index) => /* @__PURE__ */ React.createElement("div", {
+    key: index,
+    className: `${ListItemStyle(align, theme)} ${item === selectedTab ? "selected" : ""}`,
+    onClick: () => setSelectedTab(item)
+  }, /* @__PURE__ */ React.createElement(Text, {
+    align: "left",
+    color: item === selectedTab ? "grey_70" : "grey_40",
+    size: "Body1",
+    theme,
+    text: `${item}`
+  }), item === selectedTab ? /* @__PURE__ */ React.createElement(motion.div, {
+    className: UnderlineStyle(theme),
+    layoutId: "underline"
+  }) : null)))), /* @__PURE__ */ React.createElement("section", null, /* @__PURE__ */ React.createElement(AnimatePresence, {
+    exitBeforeEnter: true
+  }, /* @__PURE__ */ React.createElement(motion.div, {
+    key: selectedTab ? selectedTab : "empty",
+    initial: { y: 10, opacity: 1 },
+    animate: { y: 0, opacity: 1 },
+    exit: { y: -10, opacity: 0 },
+    transition: { duration: 0.2 },
+    className: ChildrenContainer
+  }, children[tabIndex]))));
 }
+var ChildrenContainer = import_css.css`
+  & > div {
+    width: 100% !important;
+  }
+`;
+var ListContainerStyle = (align) => import_css.css`
+  display: flex;
+  ${align === "center" ? "width: 100%;" : null}
+  gap: 32px;
+`;
+var ContainerStyle = (theme) => import_css.css`
+  border-radius: 10px;
+  background: ${theme === "light" ? tokens.color.grey_5_light : tokens.color.grey_5_dark};
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+`;
+var NavigationStyle = (theme) => import_css.css`
+  /* padding: 4px 4px 0; */
+  overflow-x: scroll;
+  overflow-y: hidden;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: 1px solid ${theme === "light" ? tokens.color.grey_30_light : tokens.color.grey_30_dark};
+  height: 56px;
+  display: flex;
+
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  & ul,
+  li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+  }
+`;
+var UnderlineStyle = (theme) => import_css.css`
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 2px;
+  background: ${theme === "light" ? tokens.color.grey_70_light : tokens.color.grey_70_dark};
+`;
+var ListItemStyle = (align, theme) => import_css.css`
+  border-radius: 5px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  padding: 10px ${align === "left" ? "0px" : "15px"};
+  position: relative;
+  background: ${theme === "light" ? tokens.color.grey_5_light : tokens.color.grey_5_dark};
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  width: fit-content;
+  position: relative;
+  user-select: none;
+`;
 export {
-  Button
+  Tabs
 };
