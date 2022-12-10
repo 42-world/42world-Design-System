@@ -1735,63 +1735,40 @@ var require_emotion_css_cjs = __commonJS({
   }
 });
 
-// src/components/Avatar.tsx
+// src/typography/temp/Text.tsx
 var import_css = __toModule(require_emotion_css_cjs());
-import { token } from "../common/token/index.js";
-function Avatar({ theme, profileImg, username, createdAt }) {
+import { getFontSize, getFontWeight, getThemeColor } from "./utils/index.js";
+function Text({ theme, size, color, align, text }) {
   return /* @__PURE__ */ React.createElement("div", {
-    className: ContainerStyle
-  }, /* @__PURE__ */ React.createElement("img", {
-    src: profileImg,
-    className: profileStyle
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: detailStyle(theme)
-  }, /* @__PURE__ */ React.createElement("p", null, username), /* @__PURE__ */ React.createElement("p", null, createdAt)));
+    className: textStyle(align, size),
+    style: { color: getThemeColor(theme, color) }
+  }, size === "header1" ? /* @__PURE__ */ React.createElement("h1", {
+    className: removeMargin
+  }, text) : size === "header2" ? /* @__PURE__ */ React.createElement("h2", {
+    className: removeMargin
+  }, text) : size === "header3" ? /* @__PURE__ */ React.createElement("h3", {
+    className: removeMargin
+  }, text) : size === "header4" ? /* @__PURE__ */ React.createElement("h4", {
+    className: removeMargin
+  }, text) : /* @__PURE__ */ React.createElement("p", {
+    className: removeMargin
+  }, text));
 }
-var detailStyle = (theme) => import_css.css`
+var textStyle = (align, size) => import_css.css`
   display: flex;
-  flex-direction: column;
-  gap: 1px;
-  white-space: nowrap; // framer에서 import 할 때 text 깨짐 방지
+  justify-content: ${align};
 
-  & > * {
-    margin: 0;
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-
-    @font-face {
-      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-        'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-        'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-      src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
-    }
-  }
-
-  & > p:first-of-type {
-    font-size: 16px;
-    color: ${theme === "light" ? token.color.grey_70_light : token.color.grey_70_dark};
-    font-weight: 500;
-  }
-
-  & > p:last-of-type {
-    font-size: 12px;
-    color: ${theme === "light" ? token.color.grey_40_light : token.color.grey_40_dark};
+  & h1, h2, h3, h4, p {
+    /* white-space: nowrap; */
+    font-size: ${getFontSize(size)};
+    font-weight: ${getFontWeight(size)}};
+    width: 1fr;
+    line-height: 1.5;
   }
 `;
-var ContainerStyle = import_css.css`
-  display: flex;
-  gap: 12px;
-  justify-content: flex-start;
-  align-items: center;
-`;
-var profileStyle = import_css.css`
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  background-color: ${token.color.grey_10_light};
-  object-fit: cover;
+var removeMargin = import_css.css`
+  margin: 0;
 `;
 export {
-  Avatar
+  Text
 };

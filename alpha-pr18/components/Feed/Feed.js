@@ -1735,114 +1735,98 @@ var require_emotion_css_cjs = __commonJS({
   }
 });
 
-// src/components/Button.tsx
+// src/components/Feed/Feed.tsx
 var import_css = __toModule(require_emotion_css_cjs());
-import {
-  createElement
-} from "react";
-import { tokens } from "../tokens.js";
-function Button({ theme, text, link, size, type }) {
-  const defaultStyle = import_css.css`
-    padding: ${size === "normal" ? "8px 24px 8px 24px" : "4px 24px 4px 24px"};
-    border-radius: 8px;
-    background-color: ${theme === "light" ? tokens.color.grey_10_light : tokens.color.grey_10_dark};
-    border: 1px solid ${theme === "light" ? tokens.color.grey_30_light : tokens.color.grey_30_dark};
-    color: ${theme === "light" ? tokens.color.grey_50_light : tokens.color.grey_50_dark};
-    font-weight: 500;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    white-space: nowrap;
-    vertical-align: baseline;
-    line-height: 1.875;
-
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-
-    @font-face {
-      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-        'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-        'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-      src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
-    }
-
-    &:hover {
-      background-color: ${theme === "light" ? tokens.color.grey_20_light : tokens.color.grey_20_dark};
-    }
-  `;
-  const dangerStyle = import_css.css`
-    padding: ${size === "normal" ? "8px 24px 8px 24px" : "4px 24px 4px 24px"};
-    border-radius: 8px;
-    background-color: ${theme === "light" ? tokens.color.grey_10_light : tokens.color.grey_10_dark};
-    border: 1px solid ${theme === "light" ? tokens.color.grey_30_light : tokens.color.grey_30_dark};
-    color: ${theme === "light" ? tokens.color.grey_50_light : tokens.color.grey_50_dark};
-    font-weight: 500;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    white-space: nowrap;
-    vertical-align: baseline;
-    line-height: 1.875;
-
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-
-    @font-face {
-      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-        'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-        'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-      src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
-    }
-
-    &:hover {
-      background-color: ${theme === "light" ? tokens.color.red_5_light : tokens.color.red_5_dark};
-      color: ${tokens.color.red_10_light};
-      border: 1px solid ${tokens.color.red_10_light};
-    }
-  `;
-  const primaryStyle = import_css.css`
-    padding: ${size === "normal" ? "8px 24px 8px 24px" : "4px 24px 4px 24px"};
-    border-radius: 8px;
-    background-color: ${tokens.color.main_green_10};
-    border: 1px solid ${theme === "light" ? tokens.color.grey_30_light : tokens.color.grey_30_dark};
-    color: ${tokens.color.grey_5_light};
-    font-weight: 500;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    cursor: pointer;
-    white-space: nowrap;
-    vertical-align: baseline;
-    line-height: 1.875;
-
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-
-    @font-face {
-      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-        'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-        'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-      src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
-    }
-
-    &:hover {
-      background-color: ${tokens.color.main_green_20};
-    }
-  `;
-  return /* @__PURE__ */ createElement("a", {
-    type: "button",
-    className: type === "default" ? defaultStyle : type === "danger" ? dangerStyle : type === "primary" ? primaryStyle : defaultStyle,
-    href: link
-  }, text);
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { ChatIcon, ThumbIcon } from "../../assets/icons/index.js";
+import { token } from "../../common/token/index.js";
+import { Text } from "../../typography/temp/index.js";
+import { Avatar } from "../Avatar.js";
+function Feed({ theme, title, contents, isThumbed, thumbCount, commentCount, user }) {
+  const thumbedStyle = "main_green_10";
+  const unThumbedStyle = theme === "light" ? "grey_50_light" : "grey_50_dark";
+  const [thumbed, setThumbed] = useState(isThumbed);
+  return /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("div", {
+    className: contentsStyle
+  }, /* @__PURE__ */ React.createElement(Avatar, {
+    createdAt: user.createdAt,
+    username: user.username,
+    profileImg: user.profileImg,
+    theme
+  }), /* @__PURE__ */ React.createElement(Text, {
+    align: "left",
+    color: "grey_60",
+    size: "header4",
+    text: title,
+    theme
+  }), /* @__PURE__ */ React.createElement("p", {
+    className: feedTextStyle(theme)
+  }, contents)), /* @__PURE__ */ React.createElement("div", {
+    className: bottomStyle(theme)
+  }, /* @__PURE__ */ React.createElement(motion.div, {
+    whileTap: { scale: 0.9 },
+    className: iconContainerStyle,
+    onClick: () => setThumbed(!thumbed)
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: iconStyle
+  }, /* @__PURE__ */ React.createElement(ThumbIcon, {
+    color: thumbed ? thumbedStyle : unThumbedStyle
+  })), /* @__PURE__ */ React.createElement(Text, {
+    align: "left",
+    color: thumbed ? "main_green_10" : "grey_50",
+    size: "body3",
+    text: thumbCount.toString(),
+    theme
+  })), /* @__PURE__ */ React.createElement("div", {
+    className: iconContainerStyle
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: iconStyle
+  }, /* @__PURE__ */ React.createElement(ChatIcon, {
+    color: theme === "light" ? "grey_50_light" : "grey_50_dark"
+  })), /* @__PURE__ */ React.createElement(Text, {
+    align: "left",
+    color: "grey_50",
+    size: "body3",
+    text: commentCount.toString(),
+    theme
+  }))));
 }
+var contentsStyle = import_css.css`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 22px;
+`;
+var feedTextStyle = (theme) => import_css.css`
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto;
+  color: ${theme === "light" ? token.color.grey_50_light : token.color.grey_50_dark};
+  line-height: 1.5;
+`;
+var bottomStyle = (theme) => import_css.css`
+  display: flex;
+  padding: 8px 0px 16px 0px;
+  gap: 16px;
+  border-bottom: 1px solid ${theme === "light" ? token.color.grey_30_light : token.color.grey_30_dark};
+`;
+var iconContainerStyle = import_css.css`
+  display: flex;
+  gap: 6px;
+`;
+var iconStyle = import_css.css`
+  width: 18px;
+  height: 18px;
+`;
 export {
-  Button
+  Feed
 };

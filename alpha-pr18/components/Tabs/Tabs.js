@@ -1735,63 +1735,112 @@ var require_emotion_css_cjs = __commonJS({
   }
 });
 
-// src/components/Avatar.tsx
+// src/components/Tabs/Tabs.tsx
 var import_css = __toModule(require_emotion_css_cjs());
-import { token } from "../common/token/index.js";
-function Avatar({ theme, profileImg, username, createdAt }) {
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
+import { token } from "../../common/token/index.js";
+import { Text } from "../../typography/temp/index.js";
+function Tabs({ label, children, align, theme }) {
+  const [selectedTab, setSelectedTab] = useState(label[0]);
+  const tabIndex = label.indexOf(selectedTab);
   return /* @__PURE__ */ React.createElement("div", {
-    className: ContainerStyle
-  }, /* @__PURE__ */ React.createElement("img", {
-    src: profileImg,
-    className: profileStyle
-  }), /* @__PURE__ */ React.createElement("div", {
-    className: detailStyle(theme)
-  }, /* @__PURE__ */ React.createElement("p", null, username), /* @__PURE__ */ React.createElement("p", null, createdAt)));
+    className: ContainerStyle(theme)
+  }, /* @__PURE__ */ React.createElement("div", {
+    className: NavigationStyle(theme)
+  }, /* @__PURE__ */ React.createElement("ul", {
+    className: ListContainerStyle(align)
+  }, label.map((item, index) => /* @__PURE__ */ React.createElement("div", {
+    key: index,
+    className: ListItemStyle(align, theme),
+    onClick: () => setSelectedTab(item)
+  }, /* @__PURE__ */ React.createElement(Text, {
+    align: "left",
+    color: item === selectedTab ? "grey_70" : "grey_40",
+    size: "body1",
+    theme,
+    text: `${item}`
+  }), item === selectedTab && /* @__PURE__ */ React.createElement(motion.div, {
+    className: UnderlineStyle(theme),
+    layoutId: "underline"
+  }))))), /* @__PURE__ */ React.createElement(AnimatePresence, {
+    exitBeforeEnter: true
+  }, /* @__PURE__ */ React.createElement(motion.div, {
+    key: selectedTab ? selectedTab : "empty",
+    initial: { y: 10, opacity: 1 },
+    animate: { y: 0, opacity: 1 },
+    exit: { y: -10, opacity: 0 },
+    transition: { duration: 0.2 },
+    className: ChildrenContainer
+  }, children[tabIndex])));
 }
-var detailStyle = (theme) => import_css.css`
+var ChildrenContainer = import_css.css`
+  & > div {
+    width: 100% !important;
+  }
+`;
+var ListContainerStyle = (align) => import_css.css`
+  display: flex;
+  ${align === "center" ? "width: 100%;" : null}
+  gap: 32px;
+`;
+var ContainerStyle = (theme) => import_css.css`
+  border-radius: 10px;
+  background: ${theme === "light" ? token.color.grey_5_light : token.color.grey_5_dark};
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 1px;
-  white-space: nowrap; // framer에서 import 할 때 text 깨짐 방지
-
-  & > * {
-    margin: 0;
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-
-    @font-face {
-      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-        'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-        'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-      src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
-    }
-  }
-
-  & > p:first-of-type {
-    font-size: 16px;
-    color: ${theme === "light" ? token.color.grey_70_light : token.color.grey_70_dark};
-    font-weight: 500;
-  }
-
-  & > p:last-of-type {
-    font-size: 12px;
-    color: ${theme === "light" ? token.color.grey_40_light : token.color.grey_40_dark};
-  }
 `;
-var ContainerStyle = import_css.css`
+var NavigationStyle = (theme) => import_css.css`
+  /* padding: 4px 4px 0; */
+  overflow-x: scroll;
+  overflow-y: hidden;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: 1px solid ${theme === "light" ? token.color.grey_30_light : token.color.grey_30_dark};
+  height: 56px;
   display: flex;
-  gap: 12px;
-  justify-content: flex-start;
-  align-items: center;
+
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  & ul,
+  li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+  }
 `;
-var profileStyle = import_css.css`
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  background-color: ${token.color.grey_10_light};
-  object-fit: cover;
+var UnderlineStyle = (theme) => import_css.css`
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 2px;
+  background: ${theme === "light" ? token.color.grey_70_light : token.color.grey_70_dark};
+`;
+var ListItemStyle = (align, theme) => import_css.css`
+  border-radius: 5px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  padding: 10px ${align === "left" ? "0px" : "15px"};
+  position: relative;
+  background: ${theme === "light" ? token.color.grey_5_light : token.color.grey_5_dark};
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  width: fit-content;
+  position: relative;
+  user-select: none;
 `;
 export {
-  Avatar
+  Tabs
 };
