@@ -2,9 +2,35 @@ var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b) => {
+  for (var prop in b || (b = {}))
+    if (__hasOwnProp.call(b, prop))
+      __defNormalProp(a, prop, b[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b)) {
+      if (__propIsEnum.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    }
+  return a;
+};
 var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
+var __objRest = (source, exclude) => {
+  var target = {};
+  for (var prop in source)
+    if (__hasOwnProp.call(source, prop) && exclude.indexOf(prop) < 0)
+      target[prop] = source[prop];
+  if (source != null && __getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(source)) {
+      if (exclude.indexOf(prop) < 0 && __propIsEnum.call(source, prop))
+        target[prop] = source[prop];
+    }
+  return target;
+};
 var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[Object.keys(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
@@ -1735,83 +1761,161 @@ var require_emotion_css_cjs = __commonJS({
   }
 });
 
-// src/components/Button/Button.tsx
+// src/components/Input.tsx
 var import_css = __toModule(require_emotion_css_cjs());
-import { token } from "../../common/token/index.js";
-import { wrapATag } from "./wrapATag.js";
-function Button(props) {
-  const isLinkType = props.childType === "link";
-  const onClick = isLinkType ? () => void 0 : props.onClick;
-  const innerButton = /* @__PURE__ */ React.createElement("button", {
-    className: getClassStyle(props),
-    onClick
-  }, /* @__PURE__ */ React.createElement("span", null, props.text));
-  return isLinkType ? wrapATag(props.link, innerButton) : innerButton;
+import {
+  createElement,
+  useCallback,
+  useState
+} from "react";
+import { tokens } from "../tokens.js";
+import { Text } from "../typography/Text.js";
+function Input(_a) {
+  var _b = _a, {
+    theme,
+    value,
+    placeholder,
+    isError,
+    errorMessage,
+    onFocus,
+    onBlur,
+    onChangeless
+  } = _b, rest = __objRest(_b, [
+    "theme",
+    "value",
+    "placeholder",
+    "isError",
+    "errorMessage",
+    "onFocus",
+    "onBlur",
+    "onChangeless"
+  ]);
+  const [isFocus, setIsFocus] = useState(false);
+  const handleFocus = useCallback((event) => {
+    setIsFocus(true);
+    if (onFocus) {
+      onFocus(event);
+    }
+  }, [onFocus]);
+  const handleBlur = useCallback((event) => {
+    setIsFocus(false);
+    if (onBlur) {
+      onBlur(event);
+    }
+  }, [onBlur]);
+  return /* @__PURE__ */ createElement("div", null, /* @__PURE__ */ createElement("div", {
+    className: containerStyle(theme, isError)
+  }, /* @__PURE__ */ createElement("span", {
+    className: placeholderStyle(theme, isFocus, value.length > 0, isError, onChangeless)
+  }, placeholder), /* @__PURE__ */ createElement("div", {
+    className: inputWrapperStyle(onChangeless)
+  }, /* @__PURE__ */ createElement("input", __spreadValues({
+    className: inputStyle(theme, isError),
+    value,
+    onFocus: handleFocus,
+    onBlur: handleBlur
+  }, rest)))), isError && /* @__PURE__ */ createElement("div", {
+    className: errorWrapperStyle
+  }, /* @__PURE__ */ createElement(Text, {
+    theme,
+    size: "Caption",
+    align: "left",
+    text: errorMessage != null ? errorMessage : "",
+    color: "red_10"
+  })));
 }
-var getClassStyle = ({ style, theme, size }) => ({
-  default: defaultStyle({ theme, size }),
-  danger: dangerStyle({ theme, size }),
-  primary: primaryStyle({ theme, size })
-})[style];
-var defaultStyle = ({ theme, size }) => import_css.css`
-  padding: ${size === "normal" ? "8px 24px 8px 24px" : "4px 24px 4px 24px"};
+var containerStyle = (theme, isError) => import_css.css`
+  box-sizing: border-box;
+  display: flex;
+  flex: 1 0 0;
+  height: 48px;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 15px 0 15px;
+  overflow: visible;
+  position: relative;
+  align-content: center;
+  flex-wrap: nowrap;
+  gap: 0;
   border-radius: 8px;
-  background-color: ${theme === "light" ? token.color.grey_10_light : token.color.grey_10_dark};
-  border: 1px solid ${theme === "light" ? token.color.grey_30_light : token.color.grey_30_dark};
-  color: ${theme === "light" ? token.color.grey_50_light : token.color.grey_50_dark};
-  font-weight: 500;
-  font-size: 16px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  cursor: pointer;
-  white-space: nowrap;
-  vertical-align: baseline;
-  line-height: 1.875;
-  &:hover {
-    background-color: ${theme === "light" ? token.color.grey_20_light : token.color.grey_20_dark};
+  border: 1px solid ${theme === "light" ? tokens.color.grey_40_light : tokens.color.grey_40_dark};
+  &:focus-within {
+    border-color: ${tokens.color.main_green_10};
   }
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue',
+    'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', sans-serif;
+  @font-face {
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
+      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+    src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
+  }
+  transition: border-color 0.2s ease-in-out;
+  ${isError && import_css.css`
+    color: ${tokens.color.red_20_light};
+    border-color: ${tokens.color.red_10_light};
+    &:focus-within {
+      border-color: ${tokens.color.red_10_light};
+    }
+  `}
 `;
-var dangerStyle = ({ theme, size }) => import_css.css`
-  padding: ${size === "normal" ? "8px 24px 8px 24px" : "4px 24px 4px 24px"};
-  border-radius: 8px;
-  background-color: ${theme === "light" ? token.color.grey_10_light : token.color.grey_10_dark};
-  border: 1px solid ${theme === "light" ? token.color.grey_30_light : token.color.grey_30_dark};
-  color: ${theme === "light" ? token.color.grey_50_light : token.color.grey_50_dark};
-  font-weight: 500;
-  font-size: 16px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  cursor: pointer;
-  white-space: nowrap;
-  vertical-align: baseline;
-  line-height: 1.875;
-  &:hover {
-    background-color: ${theme === "light" ? token.color.red_5_light : token.color.red_5_dark};
-    color: ${token.color.red_10_light};
-    border: 1px solid ${token.color.red_10_light};
-  }
+var inputWrapperStyle = (onChangeless) => import_css.css`
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  flex: 0 0 auto;
+  height: ${onChangeless ? "100%" : "34px"};
+  z-index: 2;
 `;
-var primaryStyle = ({ theme, size }) => import_css.css`
-  padding: ${size === "normal" ? "8px 24px 8px 24px" : "4px 24px 4px 24px"};
-  border-radius: 8px;
-  background-color: ${token.color.main_green_10};
-  border: 1px solid ${theme === "light" ? token.color.grey_30_light : token.color.grey_30_dark};
-  color: ${token.color.grey_5_light};
-  font-weight: 500;
+var inputStyle = (theme, isError) => import_css.css`
+  color: ${theme === "light" ? tokens.color.grey_60_light : tokens.color.grey_60_dark};
   font-size: 16px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  cursor: pointer;
-  white-space: nowrap;
-  vertical-align: baseline;
-  line-height: 1.875;
-  &:hover {
-    background-color: ${token.color.main_green_20};
-  }
+  caret-color: rgb(255, 255, 255);
+  font-family: 'Pretendard Medium', serif;
+  font-weight: 100;
+  appearance: none;
+  border: none;
+  border-radius: unset;
+  margin: unset;
+  outline: unset;
+  box-sizing: border-box;
+  background: unset;
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  ${isError && import_css.css`
+    color: ${tokens.color.red_20_light};
+  `};
+`;
+var placeholderStyle = (theme, isFocus, isTyping, isError, onChangeless) => import_css.css`
+  display: ${onChangeless && isTyping ? "none" : "block"};
+  position: absolute;
+  top: ${isTyping ? "8px" : "50%"};
+  left: 15px;
+  flex-shrink: 0;
+  width: auto;
+  height: auto;
+  white-space: pre;
+  z-index: 1;
+  font-family: 'Pretendard Regular', serif;
+  color: ${isFocus && isTyping ? tokens.color.main_green_20 : theme === "light" ? tokens.color.grey_40_light : tokens.color.grey_40_dark};
+  transform: ${isTyping ? "none" : " translateY(-50%)"};
+  transform-origin: 50% 50% 0;
+  font-size: ${isTyping ? "10px" : "14px"};
+  line-height: ${isTyping ? "1.2" : "1.4"};
+  transition-duration: 0.2s;
+  transition-property: transform, color, top, line-height;
+  ${isError && import_css.css`
+    color: ${tokens.color.red_20_light};
+  `}
+`;
+var errorWrapperStyle = import_css.css`
+  margin-top: 8px;
+  margin-left: 15px;
 `;
 export {
-  Button
+  Input
 };
