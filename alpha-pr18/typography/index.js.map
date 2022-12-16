@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../src/typography/index.ts"],
-  "sourcesContent": ["export * from './Text';\n"],
-  "mappings": ";AAAA;",
-  "names": []
-}

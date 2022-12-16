@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/assets/icons/index.ts"],
-  "sourcesContent": ["export * from './BellIcon';\nexport * from './ChatIcon';\nexport * from './CheckMarkIcon';\nexport * from './MoonIcon';\nexport * from './PlusIcon';\nexport * from './SearchIcon';\nexport * from './SunIcon';\nexport * from './ThumbIcon';\n"],
-  "mappings": ";AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;",
-  "names": []
-}

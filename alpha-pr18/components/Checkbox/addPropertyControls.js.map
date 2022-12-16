@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/components/Checkbox/addPropertyControls.ts"],
-  "sourcesContent": ["import { ControlType } from 'framer';\nimport { themeProperty } from '../../common/property';\nimport { addStrictPropertyControls } from '../../common/utils';\nimport { Checkbox } from './Checkbox';\n\naddStrictPropertyControls(Checkbox, {\n  theme: themeProperty,\n  text: {\n    title: 'Text',\n    type: ControlType.String,\n    defaultValue: 'text',\n  },\n  isChecked: {\n    title: 'Checked',\n    type: ControlType.Boolean,\n    defaultValue: false,\n  },\n  onClick: {\n    title: 'onClick',\n    type: ControlType.EventHandler,\n  },\n});\n"],
-  "mappings": ";AAAA;AACA;AACA;AACA;AAEA,0BAA0B,UAAU;AAAA,EAClC,OAAO;AAAA,EACP,MAAM;AAAA,IACJ,OAAO;AAAA,IACP,MAAM,YAAY;AAAA,IAClB,cAAc;AAAA;AAAA,EAEhB,WAAW;AAAA,IACT,OAAO;AAAA,IACP,MAAM,YAAY;AAAA,IAClB,cAAc;AAAA;AAAA,EAEhB,SAAS;AAAA,IACP,OAAO;AAAA,IACP,MAAM,YAAY;AAAA;AAAA;",
-  "names": []
-}

@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/assets/icons/MoonIcon.tsx"],
-  "sourcesContent": ["import { token } from '../../common/token';\nimport type { Color } from '../../common/token/color';\n\ninterface Props {\n  color: Color;\n}\n\nexport const MoonIcon = ({ color: colorName }: Props) => {\n  return (\n    <svg viewBox=\"0 0 20 20\" fill=\"currentColor\" width=\"24\" height=\"24\" color={token.color[colorName]}>\n      <path d=\"M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z\"></path>\n    </svg>\n  );\n};\n"],
-  "mappings": ";AAAA;AAOO,IAAM,WAAW,CAAC,EAAE,OAAO,gBAAuB;AACvD,SACE,oCAAC,OAAD;AAAA,IAAK,SAAQ;AAAA,IAAY,MAAK;AAAA,IAAe,OAAM;AAAA,IAAK,QAAO;AAAA,IAAK,OAAO,MAAM,MAAM;AAAA,KACrF,oCAAC,QAAD;AAAA,IAAM,GAAE;AAAA;AAAA;",
-  "names": []
-}

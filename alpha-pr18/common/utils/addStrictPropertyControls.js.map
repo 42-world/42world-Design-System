@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/common/utils/addStrictPropertyControls.ts"],
-  "sourcesContent": ["import { addPropertyControls, ControlDescription, PropertyControls } from 'framer';\nimport { Theme } from '../type';\n\ntype HigherOrderComponent<Props> = (Component: React.ComponentType<Props>, props?: Props) => React.ComponentType<Props>;\n\ntype PropertyControlsType<Props extends Record<string, any>> = {\n  [K in keyof Props]: ControlDescription<Partial<Props>> & {\n    title: string;\n  };\n};\n\nexport function addStrictPropertyControls<Props extends Record<string, any> & { theme: Theme }>(\n  component: React.ComponentType<Props> | React.ForwardRefExoticComponent<Props> | HigherOrderComponent<Props>,\n  propertyControls: PropertyControlsType<Props>,\n): void {\n  addPropertyControls(component, propertyControls as PropertyControls<Props>);\n}\n"],
-  "mappings": ";AAAA;AAWO,mCACL,WACA,kBACM;AACN,sBAAoB,WAAW;AAAA;",
-  "names": []
-}

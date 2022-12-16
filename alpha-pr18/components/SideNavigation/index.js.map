@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/components/SideNavigation/index.ts"],
-  "sourcesContent": ["export * from './SideNavigation';\n"],
-  "mappings": ";AAAA;",
-  "names": []
-}

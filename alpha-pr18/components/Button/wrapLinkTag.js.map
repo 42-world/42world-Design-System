@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/components/Button/wrapLinkTag.tsx"],
-  "sourcesContent": ["import { Link } from 'framer';\n\nexport function wrapLinkTag(herf: string, children: JSX.Element): JSX.Element {\n  return <Link href={herf}>{children}</Link>;\n}\n"],
-  "mappings": ";AAAA;AAEO,qBAAqB,MAAc,UAAoC;AAC5E,SAAO,oCAAC,MAAD;AAAA,IAAM,MAAM;AAAA,KAAO;AAAA;",
-  "names": []
-}

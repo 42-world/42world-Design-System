@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/common/property/index.ts"],
-  "sourcesContent": ["export * from './themeProperty';\n"],
-  "mappings": ";AAAA;",
-  "names": []
-}

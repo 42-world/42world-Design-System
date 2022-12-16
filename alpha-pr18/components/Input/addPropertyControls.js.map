@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/components/Input/addPropertyControls.ts"],
-  "sourcesContent": ["import { ControlType } from 'framer';\nimport { themeProperty } from '../../common/property';\nimport { addStrictPropertyControls } from '../../common/utils';\nimport { Input } from './Input';\n\naddStrictPropertyControls(Input, {\n  theme: themeProperty,\n  value: {\n    title: 'Value',\n    type: ControlType.String,\n    defaultValue: 'value',\n  },\n  onChangeless: {\n    title: 'onChangeless',\n    type: ControlType.Boolean,\n    defaultValue: false,\n  },\n  hasError: {\n    title: 'Error',\n    type: ControlType.Boolean,\n    defaultValue: false,\n  },\n  errorMessage: {\n    title: 'Error Message',\n    type: ControlType.String,\n    defaultValue: '\uC5D0\uB7EC \uBA54\uC2DC\uC9C0',\n  },\n  placeholder: {\n    title: 'Placeholder',\n    type: ControlType.String,\n    defaultValue: 'placeholder',\n  },\n  onChange: {\n    title: 'onChange',\n    type: ControlType.EventHandler,\n  }, //TODO: framer \uC5D0\uC11C \uBCF4\uC784?\n});\n"],
-  "mappings": ";AAAA;AACA;AACA;AACA;AAEA,0BAA0B,OAAO;AAAA,EAC/B,OAAO;AAAA,EACP,OAAO;AAAA,IACL,OAAO;AAAA,IACP,MAAM,YAAY;AAAA,IAClB,cAAc;AAAA;AAAA,EAEhB,cAAc;AAAA,IACZ,OAAO;AAAA,IACP,MAAM,YAAY;AAAA,IAClB,cAAc;AAAA;AAAA,EAEhB,UAAU;AAAA,IACR,OAAO;AAAA,IACP,MAAM,YAAY;AAAA,IAClB,cAAc;AAAA;AAAA,EAEhB,cAAc;AAAA,IACZ,OAAO;AAAA,IACP,MAAM,YAAY;AAAA,IAClB,cAAc;AAAA;AAAA,EAEhB,aAAa;AAAA,IACX,OAAO;AAAA,IACP,MAAM,YAAY;AAAA,IAClB,cAAc;AAAA;AAAA,EAEhB,UAAU;AAAA,IACR,OAAO;AAAA,IACP,MAAM,YAAY;AAAA;AAAA;",
-  "names": []
-}
