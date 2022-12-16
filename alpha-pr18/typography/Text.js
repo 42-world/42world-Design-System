@@ -1735,84 +1735,47 @@ var require_emotion_css_cjs = __commonJS({
   }
 });
 
-// src/components/Checkbox/Checkbox.tsx
+// src/typography/Text.tsx
 var import_css = __toModule(require_emotion_css_cjs());
-import { useCallback, useState } from "react";
-import { CheckMarkIcon } from "../../assets/icons/index.js";
-import { token } from "../../common/token/index.js";
-function Checkbox({ theme, direction, list }) {
-  return /* @__PURE__ */ React.createElement("div", {
-    className: containerStyle(direction)
-  }, list.map((item) => /* @__PURE__ */ React.createElement(CheckboxInnerElement, {
-    theme,
-    item
-  })));
-}
-function CheckboxInnerElement({ theme, item }) {
-  const [checked, setChecked] = useState(item.isChecked);
-  const handleCheck = useCallback(() => {
-    console.log(checked);
-    setChecked((prevState) => !prevState);
-  }, [checked]);
-  return /* @__PURE__ */ React.createElement("div", {
-    className: checkboxWrapperStyle(theme)
-  }, /* @__PURE__ */ React.createElement("button", {
-    className: checkboxButtonStyle(theme),
-    onClick: handleCheck
-  }, /* @__PURE__ */ React.createElement(CheckMarkIcon, {
-    color: theme === "light" ? "grey_60_light" : "grey_60_dark"
-  })), /* @__PURE__ */ React.createElement("p", {
-    onClick: handleCheck
-  }, item.text));
-}
-var containerStyle = (direction) => import_css.css`
-  display: flex;
-  flex-direction: ${direction};
-  gap: 22px;
-  justify-content: 'start';
-  align-items: 'start';
-  white-space: nowrap;
-`;
-var checkboxWrapperStyle = (theme) => import_css.css`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-  font-size: 22px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  color: ${theme === "light" ? token.color.grey_60_light : token.color.grey_60_dark};
-  font-size: 14px;
+import {
+  createElement
+} from "react";
+import { tokens } from "../tokens.js";
+function Text({ theme, size, color, align, text }) {
+  const textStyle = import_css.css`
+    display: flex;
+    justify-content: ${align};
 
-  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue',
-    'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
-    'Segoe UI Symbol', sans-serif;
+    & h1,
+    h2,
+    h3,
+    h4,
+    p {
+      /* white-space: nowrap; */
+      font-size: ${size === "Header1" ? "45px" : size === "Header2" ? "36px" : size === "Header3" ? "26px" : size === "Header4" ? "18px" : size === "Body1" ? "18px" : size === "Body2" ? "16px" : size === "Body3" ? "14px" : size === "Caption" ? "12px" : "16px"};
+      font-weight: ${size === "Header1" ? 600 : size === "Header2" ? 600 : size === "Header3" ? 600 : size === "Header4" ? 600 : size === "Body1" ? 500 : 500};
+      width: 1fr;
+      line-height: 1.25;
+      margin: 0;
+      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+        'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
+        'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
 
-  @font-face {
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-      'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-    src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
-  }
-`;
-var checkboxButtonStyle = (theme) => import_css.css`
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  cursor: pointer;
-
-  &:checked > div {
-    border: 2px solid ${theme === "light" ? token.color.grey_60_light : token.color.grey_60_dark};
-
-    & svg {
-      opacity: 1;
+      @font-face {
+        font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+          'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji',
+          'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+        src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/variable/pretendardvariable.css');
+      }
     }
-  }
-`;
+  `;
+  const COLOR_LIGHT = color === "grey_40" ? tokens.color.grey_40_light : color === "grey_50" ? tokens.color.grey_50_light : color === "grey_60" ? tokens.color.grey_60_light : color === "grey_70" ? tokens.color.grey_70_light : color === "main_green_10" ? tokens.color.main_green_10 : color === "red_10" ? tokens.color.red_10_light : tokens.color.grey_50_light;
+  const COLOR_DARK = color === "grey_40" ? tokens.color.grey_40_dark : color === "grey_50" ? tokens.color.grey_50_dark : color === "grey_60" ? tokens.color.grey_60_dark : color === "grey_70" ? tokens.color.grey_70_dark : color === "main_green_10" ? tokens.color.main_green_10 : color === "red_10" ? tokens.color.red_10_light : tokens.color.grey_50_light;
+  return /* @__PURE__ */ createElement("div", {
+    className: textStyle,
+    style: { color: theme === "light" ? COLOR_LIGHT : COLOR_DARK }
+  }, size === "Header1" ? /* @__PURE__ */ createElement("h1", null, text) : size === "Header2" ? /* @__PURE__ */ createElement("h2", null, text) : size === "Header3" ? /* @__PURE__ */ createElement("h3", null, text) : size === "Header4" ? /* @__PURE__ */ createElement("h4", null, text) : /* @__PURE__ */ createElement("p", null, text));
+}
 export {
-  Checkbox
+  Text
 };
