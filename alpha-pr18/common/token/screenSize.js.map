@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/common/token/screenSize.ts"],
+  "sourcesContent": ["export const screenSize = {\n  TABLET_SIZE: '700px',\n};\n\nexport type ScreenSize = keyof typeof screenSize;\n"],
+  "mappings": ";AAAO,IAAM,aAAa;AAAA,EACxB,aAAa;AAAA;",
+  "names": []
+}

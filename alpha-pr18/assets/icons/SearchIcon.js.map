@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/assets/icons/SearchIcon.tsx"],
+  "sourcesContent": ["import { token } from '../../common/token';\nimport type { Color } from '../../common/token/color';\n\ninterface Props {\n  color: Color;\n}\n\nexport const SearchIcon = ({ color: colorName }: Props) => {\n  return (\n    <svg viewBox=\"0 0 20 20\" fill=\"currentColor\" width=\"24\" height=\"24\" color={token.color[colorName]}>\n      <path\n        fillRule=\"evenodd\"\n        d=\"M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z\"\n        clipRule=\"evenodd\"\n      ></path>\n    </svg>\n  );\n};\n"],
+  "mappings": ";AAAA;AAOO,IAAM,aAAa,CAAC,EAAE,OAAO,gBAAuB;AACzD,SACE,oCAAC,OAAD;AAAA,IAAK,SAAQ;AAAA,IAAY,MAAK;AAAA,IAAe,OAAM;AAAA,IAAK,QAAO;AAAA,IAAK,OAAO,MAAM,MAAM;AAAA,KACrF,oCAAC,QAAD;AAAA,IACE,UAAS;AAAA,IACT,GAAE;AAAA,IACF,UAAS;AAAA;AAAA;",
+  "names": []
+}

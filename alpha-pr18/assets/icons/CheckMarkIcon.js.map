@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/assets/icons/CheckMarkIcon.tsx"],
+  "sourcesContent": ["import { token } from '../../common/token';\nimport type { Color } from '../../common/token/color';\n\ninterface Props {\n  color: Color;\n}\n\nexport const CheckMarkIcon = ({ color: colorName }: Props) => {\n  return (\n    <svg\n      className=\"checkmarkSvg\"\n      viewBox=\"0 0 20 20\"\n      fill=\"currentColor\"\n      width=\"24\"\n      height=\"24\"\n      color={token.color[colorName]}\n      // style=\"width: 100%; height: 100%; cursor: auto;\"\n    >\n      <path\n        fill-rule=\"evenodd\"\n        d=\"M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z\"\n        clip-rule=\"evenodd\"\n      ></path>\n    </svg>\n  );\n};\n"],
+  "mappings": ";AAAA;AAOO,IAAM,gBAAgB,CAAC,EAAE,OAAO,gBAAuB;AAC5D,SACE,oCAAC,OAAD;AAAA,IACE,WAAU;AAAA,IACV,SAAQ;AAAA,IACR,MAAK;AAAA,IACL,OAAM;AAAA,IACN,QAAO;AAAA,IACP,OAAO,MAAM,MAAM;AAAA,KAGnB,oCAAC,QAAD;AAAA,IACE,aAAU;AAAA,IACV,GAAE;AAAA,IACF,aAAU;AAAA;AAAA;",
+  "names": []
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/components/Avatar/index.ts"],
+  "sourcesContent": ["export * from './Avatar';\n"],
+  "mappings": ";AAAA;",
+  "names": []
+}
