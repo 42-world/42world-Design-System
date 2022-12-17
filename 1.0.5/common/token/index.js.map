@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/common/token/index.ts"],
+  "sourcesContent": ["import { color } from './color';\nimport { screenSize } from './screenSize';\n\nexport const token = {\n  color,\n  screenSize,\n};\n\n// export type { Color } from './color';\n// export type { ScreenSize } from './screenSize';\n"],
+  "mappings": ";AAAA;AACA;AAEO,IAAM,QAAQ;AAAA,EACnB;AAAA,EACA;AAAA;",
+  "names": []
+}

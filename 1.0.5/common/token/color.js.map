@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/common/token/color.ts"],
+  "sourcesContent": ["export const color = {\n  main_green_5: '#9CDD9F',\n  main_green_10: '#41C464',\n  main_green_20: '#009929',\n  red_5_light: '#FFD4D1',\n  red_10_light: '#FF5D5D',\n  red_20_light: '#F34247',\n  red_5_dark: '#5F2121',\n  grey_5_light: '#FEFEFE',\n  grey_10_light: '#FDFDFD',\n  grey_20_light: '#F7F8F9',\n  grey_30_light: '#E9EBEE',\n  grey_40_light: '#C5C8CE',\n  grey_50_light: '#646F7C',\n  grey_60_light: '#374553',\n  grey_70_light: '#28323C',\n  grey_80_light: '#161D24',\n  grey_5_dark: '#171B1C',\n  grey_10_dark: '#1E2427',\n  grey_20_dark: '#2E363A',\n  grey_30_dark: '#41474C',\n  grey_40_dark: '#5A6166',\n  grey_50_dark: '#999FA4',\n  grey_60_dark: '#C5C8CE',\n  grey_70_dark: '#F7F8F9',\n  grey_80_dark: '#FDFDFD',\n};\n\nexport type Color = keyof typeof color;\n"],
+  "mappings": ";AAAO,IAAM,QAAQ;AAAA,EACnB,cAAc;AAAA,EACd,eAAe;AAAA,EACf,eAAe;AAAA,EACf,aAAa;AAAA,EACb,cAAc;AAAA,EACd,cAAc;AAAA,EACd,YAAY;AAAA,EACZ,cAAc;AAAA,EACd,eAAe;AAAA,EACf,eAAe;AAAA,EACf,eAAe;AAAA,EACf,eAAe;AAAA,EACf,eAAe;AAAA,EACf,eAAe;AAAA,EACf,eAAe;AAAA,EACf,eAAe;AAAA,EACf,aAAa;AAAA,EACb,cAAc;AAAA,EACd,cAAc;AAAA,EACd,cAAc;AAAA,EACd,cAAc;AAAA,EACd,cAAc;AAAA,EACd,cAAc;AAAA,EACd,cAAc;AAAA,EACd,cAAc;AAAA;",
+  "names": []
+}

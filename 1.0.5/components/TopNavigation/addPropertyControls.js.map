@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/components/TopNavigation/addPropertyControls.ts"],
+  "sourcesContent": ["import { ControlType } from 'framer';\nimport { themeProperty } from '../../common/property';\nimport { addStrictPropertyControls } from '../../common/utils';\nimport { TopNavigation } from './TopNavigation';\n\naddStrictPropertyControls(TopNavigation, {\n  theme: themeProperty,\n  links: {\n    title: 'Links',\n    type: ControlType.Object,\n    controls: {\n      homeLink: { type: ControlType.Link },\n      themeLink: { type: ControlType.Link },\n      searchLink: { type: ControlType.Link },\n      createLink: { type: ControlType.Link },\n      alertLink: { type: ControlType.Link },\n    },\n  },\n  user: {\n    title: 'User',\n    type: ControlType.Object,\n    controls: {\n      profileLink: {\n        type: ControlType.Link,\n      },\n      profileImg: {\n        type: ControlType.Image,\n      },\n    },\n  },\n});\n"],
+  "mappings": ";AAAA;AACA;AACA;AACA;AAEA,0BAA0B,eAAe;AAAA,EACvC,OAAO;AAAA,EACP,OAAO;AAAA,IACL,OAAO;AAAA,IACP,MAAM,YAAY;AAAA,IAClB,UAAU;AAAA,MACR,UAAU,EAAE,MAAM,YAAY;AAAA,MAC9B,WAAW,EAAE,MAAM,YAAY;AAAA,MAC/B,YAAY,EAAE,MAAM,YAAY;AAAA,MAChC,YAAY,EAAE,MAAM,YAAY;AAAA,MAChC,WAAW,EAAE,MAAM,YAAY;AAAA;AAAA;AAAA,EAGnC,MAAM;AAAA,IACJ,OAAO;AAAA,IACP,MAAM,YAAY;AAAA,IAClB,UAAU;AAAA,MACR,aAAa;AAAA,QACX,MAAM,YAAY;AAAA;AAAA,MAEpB,YAAY;AAAA,QACV,MAAM,YAAY;AAAA;AAAA;AAAA;AAAA;",
+  "names": []
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/common/utils/index.ts"],
+  "sourcesContent": ["export * from './addStrictPropertyControls';\n"],
+  "mappings": ";AAAA;",
+  "names": []
+}
