@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/assets/icons/PlusIcon.tsx"],
-  "sourcesContent": ["import { token } from '../../common/token';\nimport type { Color } from '../../common/token/color';\n\ninterface Props {\n  color: Color;\n}\n\nexport const PlusIcon = ({ color: colorName }: Props) => {\n  return (\n    <svg viewBox=\"0 0 20 20\" fill=\"currentColor\" width=\"24\" height=\"24\" color={token.color[colorName]}>\n      <path\n        fillRule=\"evenodd\"\n        d=\"M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z\"\n        clipRule=\"evenodd\"\n      ></path>\n    </svg>\n  );\n};\n"],
-  "mappings": ";AAAA;AAOO,IAAM,WAAW,CAAC,EAAE,OAAO,gBAAuB;AACvD,SACE,oCAAC,OAAD;AAAA,IAAK,SAAQ;AAAA,IAAY,MAAK;AAAA,IAAe,OAAM;AAAA,IAAK,QAAO;AAAA,IAAK,OAAO,MAAM,MAAM;AAAA,KACrF,oCAAC,QAAD;AAAA,IACE,UAAS;AAAA,IACT,GAAE;AAAA,IACF,UAAS;AAAA;AAAA;",
-  "names": []
-}

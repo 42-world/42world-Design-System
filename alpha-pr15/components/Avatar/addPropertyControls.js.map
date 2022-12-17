@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/components/Avatar/addPropertyControls.ts"],
-  "sourcesContent": ["import { ControlType } from 'framer';\nimport { themeProperty } from '../../common/property';\nimport { addStrictPropertyControls } from '../../common/utils';\nimport { Avatar } from './Avatar';\n\naddStrictPropertyControls(Avatar, {\n  theme: themeProperty,\n  img: {\n    title: 'Profile Image',\n    type: ControlType.ResponsiveImage,\n  },\n  name: {\n    title: 'Name',\n    type: ControlType.String,\n  },\n  seconderyText: {\n    title: 'Secondery Text',\n    type: ControlType.String,\n  },\n});\n"],
-  "mappings": ";AAAA;AACA;AACA;AACA;AAEA,0BAA0B,QAAQ;AAAA,EAChC,OAAO;AAAA,EACP,KAAK;AAAA,IACH,OAAO;AAAA,IACP,MAAM,YAAY;AAAA;AAAA,EAEpB,MAAM;AAAA,IACJ,OAAO;AAAA,IACP,MAAM,YAAY;AAAA;AAAA,EAEpB,eAAe;AAAA,IACb,OAAO;AAAA,IACP,MAAM,YAAY;AAAA;AAAA;",
-  "names": []
-}

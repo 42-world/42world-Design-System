@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/components/Chip/addPropertyControls.ts"],
-  "sourcesContent": ["import { ControlType } from 'framer';\nimport { themeProperty } from '../../common/property';\nimport { addStrictPropertyControls } from '../../common/utils';\nimport { Chip } from './Chip';\n\naddStrictPropertyControls(Chip, {\n  theme: themeProperty,\n  text: {\n    title: 'Text',\n    type: ControlType.String,\n    defaultValue: '\uD14D\uC2A4\uD2B8',\n  },\n  isSelected: {\n    title: 'Is Selected',\n    type: ControlType.Boolean,\n    defaultValue: false,\n  },\n  onClick: {\n    title: 'onClick',\n    type: ControlType.EventHandler,\n  },\n});\n"],
-  "mappings": ";AAAA;AACA;AACA;AACA;AAEA,0BAA0B,MAAM;AAAA,EAC9B,OAAO;AAAA,EACP,MAAM;AAAA,IACJ,OAAO;AAAA,IACP,MAAM,YAAY;AAAA,IAClB,cAAc;AAAA;AAAA,EAEhB,YAAY;AAAA,IACV,OAAO;AAAA,IACP,MAAM,YAAY;AAAA,IAClB,cAAc;AAAA;AAAA,EAEhB,SAAS;AAAA,IACP,OAAO;AAAA,IACP,MAAM,YAAY;AAAA;AAAA;",
-  "names": []
-}

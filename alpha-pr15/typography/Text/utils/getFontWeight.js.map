@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../../src/typography/Text/utils/getFontWeight.ts"],
-  "sourcesContent": ["import { TextSizeType } from '../types';\n\nexport const getFontWeight = (size: TextSizeType) =>\n  size === 'header1'\n    ? 600\n    : size === 'header2'\n    ? 600\n    : size === 'header3'\n    ? 600\n    : size === 'header4'\n    ? 600\n    : size === 'body1'\n    ? 500\n    : 500;\n"],
-  "mappings": ";AAEO,IAAM,gBAAgB,CAAC,SAC5B,SAAS,YACL,MACA,SAAS,YACT,MACA,SAAS,YACT,MACA,SAAS,YACT,MACA,SAAS,UACT,MACA;",
-  "names": []
-}

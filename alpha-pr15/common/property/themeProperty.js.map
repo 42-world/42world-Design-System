@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/common/property/themeProperty.ts"],
-  "sourcesContent": ["import { ControlDescription, ControlType } from 'framer';\nimport { Theme } from '../type';\n\nexport const themeProperty: ControlDescription<{ theme: Theme }> & {\n  title: string;\n} = {\n  title: 'Theme',\n  type: ControlType.Enum,\n  options: ['light', 'dark'],\n  defaultValue: 'light',\n  displaySegmentedControl: true,\n};\n"],
-  "mappings": ";AAAA;AAGO,IAAM,gBAET;AAAA,EACF,OAAO;AAAA,EACP,MAAM,YAAY;AAAA,EAClB,SAAS,CAAC,SAAS;AAAA,EACnB,cAAc;AAAA,EACd,yBAAyB;AAAA;",
-  "names": []
-}

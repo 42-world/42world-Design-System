@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../../src/components/Feed/index.ts"],
-  "sourcesContent": ["export * from './Feed';\n"],
-  "mappings": ";AAAA;",
-  "names": []
-}
