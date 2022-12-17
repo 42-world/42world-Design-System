@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/components/SortSelector/addPropertyControls.ts"],
+  "sourcesContent": ["import { ControlType } from 'framer';\nimport { themeProperty } from '../../common/property';\nimport { addStrictPropertyControls } from '../../common/utils';\nimport { SortSelector } from './SortSelector';\n\naddStrictPropertyControls(SortSelector, {\n  theme: themeProperty,\n  selectedIndex: {\n    title: 'SelectedIndex',\n    type: ControlType.Number,\n    displayStepper: true,\n    defaultValue: 0,\n    min: 0,\n  },\n  list: {\n    title: 'List',\n    type: ControlType.Array,\n    control: {\n      type: ControlType.Object,\n      controls: {\n        text: {\n          type: ControlType.String,\n        },\n        link: {\n          type: ControlType.Link,\n        },\n      },\n    },\n    defaultValue: [{ text: 'sort1' }, { text: 'sort2' }, { text: 'sort3' }],\n  },\n  onClick: {\n    title: 'onClick',\n    type: ControlType.EventHandler,\n  },\n});\n"],
+  "mappings": ";AAAA;AACA;AACA;AACA;AAEA,0BAA0B,cAAc;AAAA,EACtC,OAAO;AAAA,EACP,eAAe;AAAA,IACb,OAAO;AAAA,IACP,MAAM,YAAY;AAAA,IAClB,gBAAgB;AAAA,IAChB,cAAc;AAAA,IACd,KAAK;AAAA;AAAA,EAEP,MAAM;AAAA,IACJ,OAAO;AAAA,IACP,MAAM,YAAY;AAAA,IAClB,SAAS;AAAA,MACP,MAAM,YAAY;AAAA,MAClB,UAAU;AAAA,QACR,MAAM;AAAA,UACJ,MAAM,YAAY;AAAA;AAAA,QAEpB,MAAM;AAAA,UACJ,MAAM,YAAY;AAAA;AAAA;AAAA;AAAA,IAIxB,cAAc,CAAC,EAAE,MAAM,WAAW,EAAE,MAAM,WAAW,EAAE,MAAM;AAAA;AAAA,EAE/D,SAAS;AAAA,IACP,OAAO;AAAA,IACP,MAAM,YAAY;AAAA;AAAA;",
+  "names": []
+}

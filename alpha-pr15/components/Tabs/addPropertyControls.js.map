@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../src/components/Tabs/addPropertyControls.ts"],
+  "sourcesContent": ["import { ControlType } from 'framer';\nimport { themeProperty } from '../../common/property';\nimport { addStrictPropertyControls } from '../../common/utils';\nimport { Tabs } from './Tabs';\n\naddStrictPropertyControls(Tabs, {\n  theme: themeProperty,\n  label: {\n    title: 'Label',\n    type: ControlType.Array,\n    control: {\n      type: ControlType.String,\n    },\n    defaultValue: ['text1', 'text2', 'text3'],\n  },\n  children: {\n    title: 'Children',\n    type: ControlType.Array,\n    control: {\n      type: ControlType.ComponentInstance,\n    },\n  },\n  align: {\n    title: 'Align',\n    type: ControlType.Enum,\n    options: ['left', 'center'],\n    defaultValue: 'left',\n    displaySegmentedControl: true,\n  },\n});\n"],
+  "mappings": ";AAAA;AACA;AACA;AACA;AAEA,0BAA0B,MAAM;AAAA,EAC9B,OAAO;AAAA,EACP,OAAO;AAAA,IACL,OAAO;AAAA,IACP,MAAM,YAAY;AAAA,IAClB,SAAS;AAAA,MACP,MAAM,YAAY;AAAA;AAAA,IAEpB,cAAc,CAAC,SAAS,SAAS;AAAA;AAAA,EAEnC,UAAU;AAAA,IACR,OAAO;AAAA,IACP,MAAM,YAAY;AAAA,IAClB,SAAS;AAAA,MACP,MAAM,YAAY;AAAA;AAAA;AAAA,EAGtB,OAAO;AAAA,IACL,OAAO;AAAA,IACP,MAAM,YAAY;AAAA,IAClB,SAAS,CAAC,QAAQ;AAAA,IAClB,cAAc;AAAA,IACd,yBAAyB;AAAA;AAAA;",
+  "names": []
+}

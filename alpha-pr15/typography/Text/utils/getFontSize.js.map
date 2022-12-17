@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../src/typography/Text/utils/getFontSize.ts"],
+  "sourcesContent": ["import { TextSizeType } from '../types';\n\nexport const getFontSize = (size: TextSizeType) =>\n  size === 'header1'\n    ? '45px'\n    : size === 'header2'\n    ? '36px'\n    : size === 'header3'\n    ? '26px'\n    : size === 'header4'\n    ? '18px'\n    : size === 'body1'\n    ? '18px'\n    : size === 'body2'\n    ? '16px'\n    : size === 'body3'\n    ? '14px'\n    : size === 'caption'\n    ? '12px'\n    : '16px';\n"],
+  "mappings": ";AAEO,IAAM,cAAc,CAAC,SAC1B,SAAS,YACL,SACA,SAAS,YACT,SACA,SAAS,YACT,SACA,SAAS,YACT,SACA,SAAS,UACT,SACA,SAAS,UACT,SACA,SAAS,UACT,SACA,SAAS,YACT,SACA;",
+  "names": []
+}
